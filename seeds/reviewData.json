@@ -1,0 +1,26 @@
+[
+    {
+      "title": "More Like 'Return of the STINK'",
+      "body": "Where were the eagles three movies ago?",
+      "rate": 1,
+      "userId": 1
+    },
+    {
+      "title": "All Quiet in the Movie Theater",
+      "body": "The original was better.",
+      "rate": 2,
+      "userId": 2
+    },
+    {
+      "title": "Test",
+      "body": "test test test",
+      "rate": 5,
+      "userId": 3
+    },
+    {
+      "title": "Test2",
+      "body": "testing 12345",
+      "rate": 4,
+      "userId": 4
+    }
+]
