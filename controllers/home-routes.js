@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { where } = require('sequelize');
+const { log } = require('handlebars');
 const { Review, User, Movie } = require('../models');
 const withAuth = require('../utils/auth');
 
@@ -46,12 +46,20 @@ router.get('/logout', withAuth, (req, res) => {
   res.render('home')
 });
 
-router.get('/movie/:id', withAuth, async (req, res) => {
+router.get('/movie/:id', async (req, res) => {
   try {
-    const movie = await Movie.findByPk(req.params.id);
-    const userId = req.session.userid;
+    const movie = await Movie.findByPk(req.params.id, {
+      include: [{
+        model: Review,
+        include: [{
+          model: User,
+        }]
+      }]
+    });
+    console.log(movie.get({ plain: true }));
+    const userId = req.session.userId;
     // res.status(200).json(movie);
-    res.render('movie', {userId, movie})
+    res.render('movie', {userId, movie: movie.get({ plain: true })})
   } catch (err) {
     res.status(400).json(err);
   }
