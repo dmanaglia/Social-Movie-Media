@@ -13,6 +13,18 @@ router.get('/dashboard', withAuth, (req, res) => {
   res.render('dashboard', {user})
 });
 
+router.get('/search', withAuth, (req, res) => {
+  let user = req.session;
+  res.render('search', {user})
+});
+
+router.get('/logout', withAuth, (req, res) => {
+  req.session.logged_in = false;
+  req.session.userid = null;
+  req.session.username = null;
+  res.render('home')
+});
+
 router.get('*', async (req, res) => {
     try {
       res.render('home');
