@@ -30,8 +30,8 @@ router.get('/movie/:id', withAuth, async (req, res) => {
   try {
     const movie = await Movie.findByPk(req.params.id);
     const userId = req.session.userid;
-    res.status(200).json(movie);
-    res.render('movie', userId)
+    // res.status(200).json(movie);
+    res.render('movie', {userId, movie})
   } catch (err) {
     res.status(400).json(err);
   }
