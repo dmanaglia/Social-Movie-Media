@@ -16,16 +16,16 @@
         
         
         {{!-- make this a partial --}}
-        
+        {{#each reviews as |review|}}
         <div class="col">
             <div class="card h-100">
                 <img class="card-img-top movie-poster" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title">Movie title</h5>
+                    <h5 class="card-title">{{review.Movie.Title}}</h5>
                 </div>
             </div>
         </div>
-        
+        {{/each}}
 
 
     </div>
