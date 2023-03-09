@@ -1,0 +1,42 @@
+<div class="w-50 mt-5 p-3 mx-auto">
+    <form id="login-form">
+        <div class="form-header mb-4 d-flex justify-content-between">
+            {{#if login}}
+            <h2>Login</h2>
+            <p>
+                <a href="/login/0" class="btn btn-primary">Sign Up</a>
+            </p>
+            {{else}}
+            <h2>Sign Up</h2>
+            <p>
+                <a href="/login/1" class="btn btn-primary">Login</a>
+            </p>
+            {{/if}}
+        </div>
+        <div class="mb-3">
+            <label for="inputUsername" class="form-label">Username</label>
+            <input type="text" class="form-control" id="inputUsername">
+            <div id="usernameHelp" class="form-text"></div>
+        </div>
+        <div class="mb-3">
+            <label for="inputPassword1" class="form-label">Password</label>
+            <input type="password" class="form-control" id="inputPassword1">
+            {{#if login}}
+            <div id="password1Help" class="form-text"></div>
+            {{else}}
+            <div id="password1Help" class="form-text">Password must be at least 4 characters long.</div>
+            {{/if}}
+        </div>
+        {{#if login}}
+        <button id="login-btn" type="submit" class="btn btn-primary">Login</button>
+        {{else}}
+        <div class="mb-3">
+            <label for="inputPassword2" class="form-label">Password</label>
+            <input type="password" class="form-control" id="inputPassword2">
+            <div id="password2Help" class="form-text">Password must match.</div>
+        </div>
+        <button id="login-btn" type="submit" class="btn btn-primary">Sign Up</button>
+        {{/if}}
+    </form>
+</div>
+<script src="/js/login.js"></script>
