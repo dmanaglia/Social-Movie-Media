@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Review, User } = require('../models');
+const { Review, User, Movie } = require('../models');
 const withAuth = require('../utils/auth');
 
 // router is either login/1 to login or login/0 sign up
@@ -23,6 +23,17 @@ router.get('/logout', withAuth, (req, res) => {
   req.session.userid = null;
   req.session.username = null;
   res.render('home')
+});
+
+router.get('/movie/:id', withAuth, async (req, res) => {
+  try {
+    const movie = await Movie.findByPk(req.params.id);
+    const userId = req.session.userid;
+    res.status(200).json(movie);
+    res.render('movie', userId)
+  } catch (err) {
+    res.status(400).json(err);
+  }
 });
 
 router.get('*', async (req, res) => {
