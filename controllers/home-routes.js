@@ -10,6 +10,7 @@ router.get('/login/:login', (req, res) => {
 
 router.get('/dashboard', withAuth, (req, res) => {
   let user = req.session;
+  // reviewData = findAll ( reviews where userId = user.id {include: {module: movie}})
   res.render('dashboard', {user})
 });
 
