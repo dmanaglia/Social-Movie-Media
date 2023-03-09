@@ -11,7 +11,21 @@
                     <h1>Movie Title</h1>
                 </div>
                 <div class="card-body">
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corrupti esse minus sed molestias doloribus! Voluptatem qui unde laudantium praesentium, odit mollitia molestiae perferendis officia atque sed minima itaque eius repudiandae!</p>
+                    <p>
+                    Title: {{movie.Title}} <br>
+                    Rating: {{movie.Rating}} <br>
+                    Year: {{movie.Year}} <br>
+                    Month: {{movie.Month}} <br>
+                    Certificate: {{movie.Certificate}} <br>
+                    Runtime: {{movie.Runtime}} <br>
+                    Directors: {{movie.Directors}} <br>
+                    Stars: {{movie.Stars}} <br>
+                    Genre: {{movie.Genre}} <br>
+                    Filming location: {{movie.Filming_location}} <br>
+                    Budget: {{movie.Budget}} <br>
+                    Income: {{movie.Income}} <br>
+                    Country of origin: {{movie.Country_of_origin}}
+                    </p>
                 </div>
                 <div class="card-footer">
                     {{#if login}}
@@ -20,6 +34,19 @@
                         <p>Login to add a review!</p>
                     {{/if}}
                 </div>
+                <div class="card-title">
+                    <h1>Reviews</h1>
+                </div>
+                {{#each movie.reviews as |review|}}
+                <div class="card-body">
+                    <h3>{{review.title}}</h3>
+                    <p>{{review.body}}</p>
+                </div>
+                <div class="card-footer">
+                    Rating is {{review.rate}}/5 stars
+                    Posted by {{review.user.username}}
+                </div>
+                {{/each}}
             </div>
         </div>
     </div>
