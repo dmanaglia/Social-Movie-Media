@@ -1,0 +1,26 @@
+<div class="container text-center">
+    <div class="row gx-5 gy-5">
+        <div class="col-3">
+            <div class="card h-100">
+                <img class="card-img movie-poster" alt="">
+            </div>
+        </div>
+        <div class="col-9">
+            <div class="card h-100">
+                <div class="card-title">
+                    <h1>Movie Title</h1>
+                </div>
+                <div class="card-body">
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corrupti esse minus sed molestias doloribus! Voluptatem qui unde laudantium praesentium, odit mollitia molestiae perferendis officia atque sed minima itaque eius repudiandae!</p>
+                </div>
+                <div class="card-footer">
+                    {{#if login}}
+                        <button class="btn btn-primary">Add Review</button>
+                    {{else}}
+                        <p>Login to add a review!</p>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

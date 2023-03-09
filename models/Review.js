@@ -28,8 +28,14 @@ Review.init(
       references: {
         model: 'user',
         key: 'id',
-      },
-    },
+      }},
+    movieId: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'movie',
+        key: 'id',
+      } 
+    }
   },
   {
     sequelize,

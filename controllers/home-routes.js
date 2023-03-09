@@ -10,6 +10,7 @@ router.get('/login/:login', (req, res) => {
 
 router.get('/dashboard', withAuth, (req, res) => {
   let user = req.session;
+  // reviewData = findAll ( reviews where userId = user.id {include: {module: movie}})
   res.render('dashboard', {user})
 });
 
@@ -23,6 +24,19 @@ router.get('/logout', withAuth, (req, res) => {
   req.session.userid = null;
   req.session.username = null;
   res.render('home')
+});
+
+router.get('/:id', withAuth, async (req, res) => {
+  try {
+      const newReview = await Review.create({
+        ...req.body,
+        user_id: req.session.user_id,
+      });
+  
+      res.status(200).json(newReview);
+  } catch (err) {
+      res.status(400).json(err);
+  }
 });
 
 router.get('*', async (req, res) => {
