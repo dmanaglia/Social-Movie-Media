@@ -14,7 +14,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
   try {
     const reviewData = await Review.findAll({
       where: {
-        userId: user.userid
+        userId: user.userId
       },
       include: [{
           model: Movie
@@ -29,7 +29,6 @@ router.get('/dashboard', withAuth, async (req, res) => {
       logged_in: user.logged_in
     });
   } catch (err) {
-    console.log(err);
     res.status(500).json(err);
   }
 });
@@ -41,7 +40,7 @@ router.get('/search', withAuth, (req, res) => {
 
 router.get('/logout', withAuth, (req, res) => {
   req.session.logged_in = false;
-  req.session.userid = null;
+  req.session.userId = null;
   req.session.username = null;
   res.render('home')
 });
