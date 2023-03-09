@@ -7,27 +7,29 @@
 - 
 
 ### User Story
-- AS A person who likes watching movies
-- I WANT have a blog where I can search movies and write reviews on them
-- SO THAT I can have a place for the movies I watch and my reviews on these movies.
+- AS A person who likes to watch movies
+- I WANT have a social media website for movies where I can search movies and write reviews on them
+- SO THAT I can have a place for the movies I have seen and my reviews on these movies.
 
 ## Table of Contents
 
-* [Usage](#usage)
+* [Description](#page_facing_up-description)
 
-* [License](#license)
+* [Usage](#wrench-usage)
 
-* [Features](#features)
+* [License](#key-license)
 
-* [Technologies Used](#)
+* [Features](#confetti_ball-features)
 
-* [Challenges](#challenges)
+* [Technologies Used](#sparkles-technologies-used)
 
-* [Successes](#successes)
+* [Challenges](#tornado-challenges)
 
-* [Future Development](#)
+* [Successes](#star2-successes)
 
-* [Credit](#credit)
+* [Future Development](#bulb-future-development)
+
+* [Credit](#medal_military-credit)
 
 ## :wrench: Usage
 
@@ -50,13 +52,13 @@ This project is licensed under the MIT license.
 - CSS Framework
 - Responsive Webpage
 - Interactive Webpage
-- User Signup/Login/Logout
+- User Signup/Login/Logout with validations
 - Search Bar
 
 ## :sparkles: Technologies Used
 
 ### Dataset
-- [Movies](link)
+- [Movies](https://www.kaggle.com/datasets/georgescutelnicu/top-100-popular-movies-from-2003-to-2022-imdb?resource=download)
 
 ### Framework
 - [Bootstrap](https://getbootstrap.com/)

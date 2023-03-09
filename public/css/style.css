@@ -1,3 +1,31 @@
+:root {
+    --one: #000000;
+    --two: #747474;
+    --three: #ffffff;
+    --error: red;
+    --pass: green;
+  }
+
+* {
+    background-color: rgb(221, 221, 221) !important;
+}
+
+input {
+    background-color: var(--three) !important;
+}
+
+button {
+    background-color: rgb(63, 159, 255) !important;
+}
+
+form {
+    margin: 5px;
+    padding: 20px;
+    border: solid black 2px;
+    border-radius: 2rem;
+}
+
+
 .movie-poster {
     content: url("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png");
 }
