@@ -13,7 +13,7 @@ Movie.init(
       },
     Title: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     Rating: {
         type: DataTypes.DECIMAL,
@@ -25,48 +25,48 @@ Movie.init(
     },
     Month: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     Certificate: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
         },
     Runtime: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
         },
     Directors: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
         },
     Stars: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
         },
     Genre: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
         },
     Filming_location: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
         },
     Budget: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
         },
     Income: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
         },
     Country_of_origin: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
         }
     },
   {
     sequelize,
-    timestamps: true,
+    timestamps: false,
     freezeTableName: true,
     underscored: true,
     modelName: 'movie'
