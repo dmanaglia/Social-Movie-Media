@@ -25,6 +25,19 @@ router.get('/logout', withAuth, (req, res) => {
   res.render('home')
 });
 
+router.get('/:id', withAuth, async (req, res) => {
+  try {
+      const newReview = await Review.create({
+        ...req.body,
+        user_id: req.session.user_id,
+      });
+  
+      res.status(200).json(newReview);
+  } catch (err) {
+      res.status(400).json(err);
+  }
+});
+
 router.get('*', async (req, res) => {
     try {
       res.render('home');
