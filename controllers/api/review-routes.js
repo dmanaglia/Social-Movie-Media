@@ -6,7 +6,7 @@ router.post('/', withAuth, async (req, res) => {
     try {
         const newReview = await Review.create({
           ...req.body,
-          user_id: req.session.user_id,
+          userId: req.session.userid,
         });
     
         res.status(200).json(newReview);
@@ -15,23 +15,43 @@ router.post('/', withAuth, async (req, res) => {
     }
 });
 
+router.put('/:id', withAuth, async (req, res) => {
+    try {
+        const reviewData = await Review.update(req.body, {
+            where: {
+                id: req.params.id,
+                userId: req.session.userid,
+            },
+        });
+  
+        if (!reviewData) {
+            res.status(404).json({ message: 'No review found with this id!' });
+            return;
+        }
+  
+        res.status(200).json(reviewData);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
 router.delete('/:id', withAuth, async (req, res) => {
     try {
-      const reviewData = await Review.destroy({
-        where: {
-          id: req.params.id,
-          user_id: req.session.user_id,
-        },
-      });
+        const reviewData = await Review.destroy({
+            where: {
+                id: req.params.id,
+                userId: req.session.userid,
+            },
+        });
   
-      if (!reviewData) {
-        res.status(404).json({ message: 'No review found with this id!' });
-        return;
-      }
+        if (!reviewData) {
+            res.status(404).json({ message: 'No review found with this id!' });
+            return;
+        }
   
-      res.status(200).json(reviewData);
+        res.status(200).json(reviewData);
     } catch (err) {
-      res.status(500).json(err);
+        res.status(500).json(err);
     }
 });
 
