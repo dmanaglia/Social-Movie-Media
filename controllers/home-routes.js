@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const { where } = require('sequelize');
 const { Review, User, Movie } = require('../models');
 const withAuth = require('../utils/auth');
 
@@ -8,10 +9,29 @@ router.get('/login/:login', (req, res) => {
   res.render('login', {login})
 });
 
-router.get('/dashboard', withAuth, (req, res) => {
+router.get('/dashboard', withAuth, async (req, res) => {
   let user = req.session;
-  // reviewData = findAll ( reviews where userId = user.id {include: {module: movie}})
-  res.render('dashboard', {user})
+  try {
+    const reviewData = await Review.findAll({
+      where: {
+        userId: user.userid
+      },
+      include: [{
+          model: Movie
+      }]
+    });
+
+    const reviews = reviewData.map((review) => review.get({ plain: true }));
+
+    res.render('dashboard', {
+      user,
+      reviews,
+      logged_in: user.logged_in
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
 });
 
 router.get('/search', withAuth, (req, res) => {
