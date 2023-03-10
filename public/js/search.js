@@ -106,26 +106,24 @@ async function renderResults({total, movieData}){
             infoContainer.append(bodyContainer);
 
             let footerContainer = $('<div>');
-            footerContainer.attr('class', 'card-footer d-flex text-end');
+            footerContainer.attr('class', 'card-footer d-flex flex-row-reverse');
             let viewMovie = $('<a>');
-            viewMovie.attr('class', 'btn btn-primary');
+            viewMovie.attr('class', 'btn btn-primary m-2');
             viewMovie.attr('href', `/movie/${movie.id}`);
             viewMovie.text('View Movie');
 
             let viewReview = $('<a>');
-            viewReview.attr('class', 'btn btn-primary');
+            viewReview.attr('class', 'btn btn-primary m-2');
 
             let review = await hasReviewed(movie.id);
-            console.log(review);
             if(review){
-                //          `/edit-review/${review.id}`
-                viewMovie.attr('href', ``);
+                viewReview.attr('href', `/editReview/${review.id}`);
                 viewReview.text('Edit Review');
             } else{
-                viewMovie.attr('href', `/review/${movie.id}`);
+                viewReview.attr('href', `/review/${movie.id}`);
                 viewReview.text('Add Review');
             }
-            footerContainer.append(movieLink);
+            footerContainer.append(viewMovie, viewReview);
             infoContainer.append(footerContainer);
 
             infoCol.append(infoContainer);

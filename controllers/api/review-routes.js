@@ -66,7 +66,7 @@ router.get('/:movieId', withAuth, async (req, res) => {
           movieId: req.params.movieId
         }
       });
-      res.status.json(reviewData)
+      res.status(200).json(reviewData)
     } catch (err) {
         console.log(err);
         res.status(500).json(err);
