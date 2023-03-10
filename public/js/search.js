@@ -110,11 +110,20 @@ async function renderResults({total, movieData}){
             let viewMovie = $('<a>');
             viewMovie.attr('class', 'btn btn-primary');
             viewMovie.attr('href', `/movie/${movie.id}`);
-            let reviewed = await hasReviewed(movie.id);
-            if(reviewed){
-                viewMovie.text('Edit Review');
+            viewMovie.text('View Movie');
+
+            let viewReview = $('<a>');
+            viewReview.attr('class', 'btn btn-primary');
+
+            let review = await hasReviewed(movie.id);
+            console.log(review);
+            if(review){
+                //          `/edit-review/${review.id}`
+                viewMovie.attr('href', ``);
+                viewReview.text('Edit Review');
             } else{
-                viewMovie.text('Add Review');
+                viewMovie.attr('href', `/review/${movie.id}`);
+                viewReview.text('Add Review');
             }
             footerContainer.append(movieLink);
             infoContainer.append(footerContainer);

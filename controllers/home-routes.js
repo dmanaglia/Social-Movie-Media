@@ -64,6 +64,7 @@ router.get('/movie/:id', withAuth, async (req, res) => {
   }
 });
 
+//movie id
 router.get('/review/:id', (req, res) => {
   res.render('review')
 });
