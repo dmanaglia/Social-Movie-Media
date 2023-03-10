@@ -64,9 +64,9 @@ router.get('/movie/:id', withAuth, async (req, res) => {
   }
 });
 
-//movie id
-router.get('/review/:id', (req, res) => {
-  res.render('review')
+router.get('/review/:id', withAuth, (req, res) => {
+  let userId = req.session.userId;
+  res.render('review', {userId})
 });
 
 router.get('*', async (req, res) => {
