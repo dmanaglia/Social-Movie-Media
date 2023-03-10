@@ -45,7 +45,7 @@ router.get('/logout', withAuth, (req, res) => {
   res.render('home')
 });
 
-router.get('/movie/:id', async (req, res) => {
+router.get('/movie/:id', withAuth, async (req, res) => {
   try {
     const movie = await Movie.findByPk(req.params.id, {
       include: [{

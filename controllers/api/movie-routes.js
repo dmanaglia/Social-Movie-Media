@@ -10,8 +10,8 @@ router.get('/allTitles', withAuth, async (req, res) => {
     res.status(200).json(allTitles);
 });
 
-router.get('/id/:id', withAuth, async (req, res) => {
-    const oneMovie = await Movie.findByPk(req.params.id)
+router.get('/get/one/:id', withAuth, async (req, res) => {
+    const oneMovie = await Movie.findByPk(req.params.id);
     res.status(200).json(oneMovie);
 });
 
@@ -29,8 +29,7 @@ router.get('/:term/:range?', withAuth, async (req, res) => {
         let range = req.params.range.split('-');
         let movieData = [];
         let i = range[0] - 1;
-        while(i < range[1] || i === fullData.length -1){
-            console.log(i);
+        while(i < range[1] && i < fullData.length){
             movieData.push(fullData[i]);
             i++;
         }
