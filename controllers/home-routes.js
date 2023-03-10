@@ -64,6 +64,10 @@ router.get('/movie/:id', withAuth, async (req, res) => {
   }
 });
 
+router.get('/review/:id', (req, res) => {
+  res.render('review')
+});
+
 router.get('*', async (req, res) => {
     try {
       res.render('home');
