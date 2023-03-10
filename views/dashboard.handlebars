@@ -12,21 +12,22 @@
 </header>
 
 <main>
-    <div class="row row-cols-1 row-cols-md-6 px-5 gy-5">
+    {{#if reviews.length}}
+    <div class="row row-cols-1 row-cols-md-6 px-5 gy-5">        
+
         
-        
-        {{!-- make this a partial --}}
         {{#each reviews as |review|}}
         <div class="col">
             <div class="card h-100">
                 <img class="card-img-top movie-poster" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title">{{review.Movie.Title}}</h5>
+                    <h5 class="card-title"><a href="/movie/{{review.movie.id}}">{{review.movie.Title}}</a></h5>
                 </div>
             </div>
         </div>
         {{/each}}
-
-
     </div>
+    {{else}}
+    <p class="d-flex justify-content-center align-items-center">Looks like you haven't reviewed anything yet! Start looking for movies <a href="/search">here</a>.</p>
+    {{/if}}
 </main>
