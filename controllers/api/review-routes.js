@@ -2,6 +2,8 @@ const router = require('express').Router();
 const { Review } = require('../../models');
 const withAuth = require('../../utils/auth');
 
+// need to include movieId in review post/put!!
+
 router.post('/', withAuth, async (req, res) => {
     try {
         const newReview = await Review.create({

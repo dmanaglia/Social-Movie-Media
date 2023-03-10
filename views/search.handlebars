@@ -8,31 +8,39 @@
         <p>-</p>
         <a href="/logout">Logout</a>
     </nav>
-    <div class="d-flex justify-content-center m-5 w-75 text-center mx-auto" id="movie-search-form">
-        <label class="m-3" for="movieSearch">Search:</label>
-        <input type="text" name="movieSearch" id="movieSearch" class="m-3" style="width: 40vw;">
-        <button class="btn btn-primary m-3" id="submitSearch">Search</button>
-    </div>
+    <form class="d-flex flex-column m-5 w-75 text-center mx-auto" id="movie-search-form">
+        <div>
+            <label class="m-3" for="movieSearch">Search:</label>
+            <input type="text" name="movieSearch" id="movieSearch" class="m-3" style="width: 40vw;">
+            <button class="btn btn-primary m-3" id="submitSearch">Search</button>
+        </div>
+        <div class="form-text"><span id="result-count"></span> Results Found.</div>
+    </form>
 </header>
-<div class="d-flex justify-content-center m-5">
-    <nav aria-label="Page navigation example">
-        <ul class="pagination">
-            <li class="page-item">
-            <a class="page-link" id="previous-page-top" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-            </a>
-            </li>
-            <li class="page-item">
-            <a class="page-link" id="next-page-top" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-            </a>
-            </li>
-        </ul>
-    </nav>
+<div class="d-flex flex-column m-5">
+    <div class="mx-auto">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <li class="page-item">
+                <a class="page-link" id="previous-page-top" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+                </li>
+                <li class="page-item">
+                <a class="page-link" id="next-page-top" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="mx-auto">
+        <p>Results <span id='result-range'></span></p>
+    </div>
 </div>
 <main>
     <div class="container text-center">
-        <div class="row gx-5 gy-5" id="list-container">            
+        <div class="row gx-5 gy-5" id="list-container">      
         </div>
     </div>
 </main>
