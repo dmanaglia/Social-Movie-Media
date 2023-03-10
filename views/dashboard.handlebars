@@ -1,4 +1,5 @@
 <header class="w-25 mx-auto mt-5 text-center">
+    <img src="assets/logo.png" alt="Logo" width="200" height="200">
     <nav class="d-flex justify-content-around">
         <a href="">Home</a>
         <p>-</p>
@@ -28,6 +29,6 @@
         {{/each}}
     </div>
     {{else}}
-    <p class="d-flex justify-content-center align-items-center">Looks like you haven't reviewed anything yet! Start looking for movies <a href="/search">here</a>.</p>
+    <p id="no-reviews" class="d-flex justify-content-center align-items-center">Looks like you haven't reviewed anything yet! Start looking for movies <a href="/search"> here</a>.</p>
     {{/if}}
 </main>

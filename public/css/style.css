@@ -24,6 +24,30 @@ body {
     background-color: var(--lightrichblack) !important;
 }
 
+#no-reviews {
+    margin: 2px;
+    padding: 20px;
+    border: solid var(--richblack) 1px;
+    border-radius: 1rem;
+    background-color: var(--lightrichblack) !important;
+}
+
+.card-body,
+.review-body {
+    text-align: left !important;
+    margin: 20px;
+    padding: 20px;
+    border: solid var(--richblack) 1px;
+    border-radius: 1rem;
+    background-color: var(--lavender) !important;
+}
+
+img {
+    margin: 0px;
+    padding: 0px;
+    background-color: transparent;
+}
+
 a {
     font-weight: bold;
     color: var(--richblack);
@@ -39,20 +63,22 @@ input {
     background-color: white !important;
 }
 
-.btn {
+.btn,
+.page-link {
     background-color: var(--darkpaynesgray) !important;
     border: var(--paynesgray) !important;
     color:#04151F !important;
 }
 
-.btn:hover {
+.btn:hover,
+.page-link:hover {
     background-color: var(--lavender) !important;
 }
 
 form {
     margin: 2px;
     padding: 20px;
-    border: solid var(--richblack) 2px;
+    border: solid var(--richblack) 1px;
     border-radius: 1rem;
     background-color: var(--lightrichblack) !important;
 }
