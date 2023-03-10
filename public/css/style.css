@@ -1,28 +1,44 @@
 :root {
-    --one: #000000;
-    --two: #747474;
-    --three: #ffffff;
+    --richblack: #04151F;
+    --lightrichblack: #cae5f6;
+    --paynesgray: #5D5F71;
+    --paledogwood: #D4BEBE;
+    --lavender: #E1DEE9;
+    --lightlavender: #D5CFE1;
     --error: red;
     --pass: green;
   }
 
 body,
 .card {
-    background-color: rgb(221, 221, 221) !important;
+    background-color: var(--lightrichblack) !important;
+    color: var(--richblack);
+}
+
+a {
+    color: var(--richblack);
+    text-decoration: none;
 }
 
 input {
-    background-color: var(--three) !important;
+    background-color: white !important;
 }
 
 button {
-    background-color: rgb(63, 159, 255) !important;
+    background-color: var(--paynesgray) !important;
+    border: var(--paynesgray) !important;
+    color:#04151F !important;
+}
+
+button:hover {
+    background-color: var(--lavender) !important;
+    border: var(--paynesgray) !important;
 }
 
 form {
     margin: 5px;
     padding: 20px;
-    border: solid black 2px;
+    border: solid var(--richblack) 2px;
     border-radius: 2rem;
 }
 
