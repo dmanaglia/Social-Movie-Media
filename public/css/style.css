@@ -39,13 +39,13 @@ input {
     background-color: white !important;
 }
 
-button {
+.btn {
     background-color: var(--darkpaynesgray) !important;
     border: var(--paynesgray) !important;
     color:#04151F !important;
 }
 
-button:hover {
+.btn:hover {
     background-color: var(--lavender) !important;
 }
 
