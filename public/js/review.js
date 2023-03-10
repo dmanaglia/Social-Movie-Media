@@ -1,11 +1,11 @@
 const newFormHandler = async (event) => {
     event.preventDefault();
   
-    // adjust id names as necessary based on what's used in the form
     const title = document.querySelector('#review-title').value.trim();
     const body = document.querySelector('#review-body').value.trim();
-    const rate = document.querySelector('#review-rate').value.trim();
-    const movieId = 1; // pull from window.location 
+    const rate = document.querySelector('input[name="rateOptions"]:checked').value;
+    const currentUrl = window.location.toString();
+    const movieId = currentUrl.charAt(currentUrl.length - 1);
   
     if (title && body && rate && movieId) {
         const response = await fetch(`/api/reviews`, {
@@ -25,4 +25,4 @@ const newFormHandler = async (event) => {
 };
 
 // adjust class name as necessary based on what's used in the form
-document.querySelector('.review-form').addEventListener('submit', newFormHandler);
+document.querySelector('#submit-review').addEventListener('click', newFormHandler);
