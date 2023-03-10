@@ -57,4 +57,24 @@ router.delete('/:id', withAuth, async (req, res) => {
     }
 });
 
+router.get('/:movieId', withAuth, async (req, res) => {
+    let user = req.session;
+    try {
+      const reviewData = await Review.findOne({
+        where: {
+          userId: user.userId,
+          movieId: req.params.movieId
+        }
+      });
+      if(reviewData){
+        res.send('1');
+      } else {
+        res.send('0');
+      }
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+    }
+});
+
 module.exports = router;

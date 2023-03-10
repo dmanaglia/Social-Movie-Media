@@ -1,4 +1,17 @@
-async function init(){
+var range = [1, 10];
+var pageNum = 1;
+var lastPage = 200;
+var lastSearch = '';
+
+async function loadPage(){
+    const res = await fetch(`/api/movies/get/all/${range.join('-')}`);
+    lastSearch = `/api/movies/get/all/`;
+    const results = await res.json();
+    console.log(results);
+    renderResults(results);
+}
+
+async function loadAutoComplete(){
     let titles = [];
     const res = await fetch(`/api/movies/allTitles`);
     const data = await res.json();
@@ -30,14 +43,22 @@ function ignoreThe(){
 
 async function searchTerm(){
     const term = $('#movieSearch').val().replaceAll(' ', '_');
-    const response = await fetch(`/api/movies/${term}`);
+    const response = await fetch(`/api/movies/${term}/${range.join('-')}`);
+    lastSearch = `/api/movies/${term}/`;
     const results = await response.json();
+    console.log(results);
     renderResults(results);
 }
 
-function renderResults(results){
+async function renderResults({total, movieData}){
+    if(total % 10 === 0){
+        lastPage = total / 10;
+    } else {
+        lastPage = Math.floor(total / 10) + 1;
+    }
+    console.log(lastPage);
     $('#list-container').empty();
-    for(const movie of results){
+    for(const movie of movieData){
         let imgCol = $('<div>');
         imgCol.attr('class', 'col-3');
         let imgContainer = $('<div>');
@@ -48,6 +69,7 @@ function renderResults(results){
         imgContainer.append(img);
         imgCol.append(imgContainer);
         $('#list-container').append(imgCol);
+
         let infoCol = $('<div>');
         infoCol.attr('class', 'col-9');
         let infoContainer = $('<div>');
@@ -81,7 +103,12 @@ function renderResults(results){
         let movieLink = $('<a>');
         movieLink.attr('class', 'btn btn-primary');
         movieLink.attr('href', `/movie/${movie.id}`);
-        movieLink.text('View Movie')
+        let reviewed = await hasReviewed(movie.id);
+        if(reviewed){
+            movieLink.text('Edit Review');
+        } else{
+            movieLink.text('Add Review');
+        }
         footerContainer.append(movieLink);
         infoContainer.append(footerContainer);
 
@@ -97,6 +124,36 @@ function parseLength(movieLength){
     return `${hours} hours ${minutes} minutes`
 }
 
-$('#submitSearch').click(searchTerm);
-init();
+async function hasReviewed(movieId){
+    let response = await fetch(`/api/reviews/${movieId}`);
+    return await response.json();
+}
+
+async function nextPage(){
+    if(pageNum !== lastPage){
+        pageNum++;
+        range = range.map(x => x + 10)
+        const res = await fetch(lastSearch + range.join('-'));
+        const data = await res.json();
+        renderResults(data);
+    }
+}
+
+async function prevPage(){
+    if(pageNum !== 1){
+        pageNum--;
+        range = range.map(x => x - 10)
+        const res = await fetch(lastSearch + range.join('-'));
+        const data = await res.json();
+        renderResults(data);
+    }
+}
+
+loadPage();
+loadAutoComplete();
 $('#movieSearch').keyup(ignoreThe);
+$('#submitSearch').click(searchTerm);
+$('#next-page-top').click(nextPage)
+$('#next-page-bottom').click(nextPage)
+$('#previous-page-top').click(prevPage)
+$('#previous-page-bottom').click(prevPage)
