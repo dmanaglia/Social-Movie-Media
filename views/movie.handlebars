@@ -1,53 +1,66 @@
-<div class="container text-center">
-    <div class="row gx-5 gy-5">
-        <div class="col-3">
-            <div class="card h-100">
-                <img class="card-img movie-poster" alt="">
+<header class="w-25 mx-auto mt-5 text-center">
+    <nav class="d-flex justify-content-around">
+        <a href="">Home</a>
+        <p>-</p>
+        <a href="/dashboard">Dashboard</a>
+        <p>-</p>
+        <a href="/search">Search</a>
+        <p>-</p>
+        <a href="/logout">Logout</a>
+    </nav>
+</header>
+
+<main>
+    <div class="container text-center">
+        <div class="row gx-5 gy-5">
+            <div class="col-3">
+                <div class="card">
+                    <img class="card-img movie-poster" alt="">
+                </div>
             </div>
-        </div>
-        <div class="col-9">
-            <div class="card h-100">
-                <div class="card-title">
-                    <h1>Movie Title</h1>
+            <div class="col-9">
+                <div class="card h-100">
+                    <div class="card-title">
+                        <h1>Movie Title</h1>
+                    </div>
+                    <div class="card-body">
+                        <p>
+                        Title: {{movie.Title}} <br>
+                        Rating: {{movie.Rating}} <br>
+                        Year: {{movie.Year}} <br>
+                        Month: {{movie.Month}} <br>
+                        Certificate: {{movie.Certificate}} <br>
+                        Runtime: {{movie.Runtime}} <br>
+                        Directors: {{movie.Directors}} <br>
+                        Stars: {{movie.Stars}} <br>
+                        Genre: {{movie.Genre}} <br>
+                        Filming location: {{movie.Filming_location}} <br>
+                        Budget: {{movie.Budget}} <br>
+                        Income: {{movie.Income}} <br>
+                        Country of origin: {{movie.Country_of_origin}}
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="/review/{{movie.id}}" class="btn btn-primary">Add Review</a>
+                    </div>
+                    <div class="card-title">
+                        <h1>Reviews</h1>
+                    </div>
+                    {{#each movie.reviews as |review|}}
+                    <span class="border border-secondary w-100">
+                        <div>
+                            <br>
+                            <h3>{{review.title}}</h3> 
+                            <p>{{review.body}}</p>
+                        </div>
+                        <div>
+                            Rating is {{review.rate}}/5 stars | 
+                            Posted by {{review.user.username}}
+                        </div>
+                    </span>
+                    {{/each}}
                 </div>
-                <div class="card-body">
-                    <p>
-                    Title: {{movie.Title}} <br>
-                    Rating: {{movie.Rating}} <br>
-                    Year: {{movie.Year}} <br>
-                    Month: {{movie.Month}} <br>
-                    Certificate: {{movie.Certificate}} <br>
-                    Runtime: {{movie.Runtime}} <br>
-                    Directors: {{movie.Directors}} <br>
-                    Stars: {{movie.Stars}} <br>
-                    Genre: {{movie.Genre}} <br>
-                    Filming location: {{movie.Filming_location}} <br>
-                    Budget: {{movie.Budget}} <br>
-                    Income: {{movie.Income}} <br>
-                    Country of origin: {{movie.Country_of_origin}}
-                    </p>
-                </div>
-                <div class="card-footer">
-                    {{#if login}}
-                        <button class="btn btn-primary">Add Review</button>
-                    {{else}}
-                        <p>Login to add a review!</p>
-                    {{/if}}
-                </div>
-                <div class="card-title">
-                    <h1>Reviews</h1>
-                </div>
-                {{#each movie.reviews as |review|}}
-                <div class="card-body">
-                    <h3>{{review.title}}</h3>
-                    <p>{{review.body}}</p>
-                </div>
-                <div class="card-footer">
-                    Rating is {{review.rate}}/5 stars
-                    Posted by {{review.user.username}}
-                </div>
-                {{/each}}
             </div>
         </div>
     </div>
-</div>
+</main>
