@@ -3,14 +3,14 @@
 </header>
 
 <div class="w-50 mt-5 p-3 mx-auto">
-    <form id="review-form">
-        
+    <form id="editReview-form">
+
         <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="review-title" placeholder="Title">
+            <input data-id="{{review.id}}" type="text" class="form-control" id="review-title" value="{{editReview.title}}">
             <label for="review-title">Title</label>
         </div>
         <div class="form-floating">
-            <input type="text" class="form-control" id="review-body" placeholder="Review">
+            <input type="text" class="form-control" id="review-body" value="{{editReview.body}}">
             <label for="review-body">Review</label>
         </div>
 
@@ -37,9 +37,9 @@
         </div>
         
         <div class="form-footer mb-4 d-flex justify-content-end">
-            <btn class="btn btn-primary">Submit</btn>
+            <button class="btn btn-primary">Submit</button>
         </div>
 
     </form>
 </div>
-<script src="/js/review.js"></script>
+<script src="/js/editReview.js"></script>

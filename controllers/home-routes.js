@@ -64,8 +64,24 @@ router.get('/movie/:id', withAuth, async (req, res) => {
   }
 });
 
-router.get('/review/:id', (req, res) => {
-  res.render('review')
+router.get('/review/:id', withAuth, (req, res) => {
+  let userId = req.session.userId;
+  res.render('review', {userId})
+});
+
+router.get('/editReview/:id', async (req, res) => {
+  try{ 
+      const editData = await Review.findByPk(req.params.id);
+      if(!editData) {
+          res.status(404).json({message: 'No review with this id!'});
+          return;
+      }
+      const editReview = editData.get({ plain: true });
+      console.log(editReview);
+      res.render('editReview', {editReview});
+    } catch (err) {
+        res.status(500).json(err);
+    };     
 });
 
 router.get('*', async (req, res) => {
