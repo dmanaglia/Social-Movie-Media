@@ -54,6 +54,7 @@ This project is licensed under the MIT license.
 - Interactive Webpage
 - User Signup/Login/Logout with validations
 - Search Bar
+- Logo
 
 ## :sparkles: Technologies Used
 
@@ -66,6 +67,11 @@ This project is licensed under the MIT license.
 ### Wireframe
 - [Figma](https://www.figma.com/file/IxDNxumuYMueUuQJjAppuS/Untitled?node-id=0-1)
 
+### Color Palette
+- [Coolors](https://coolors.co/d5cfe1-e1dee9-d4bebe-04151f-5d5f71)
+
+### Color Palette
+- [Coolors](https://coolors.co/d5cfe1-e1dee9-d4bebe-04151f-5d5f71)
 ### Applications
 - VS Code
 - Heroku
