@@ -45,7 +45,7 @@ router.get('/logout', withAuth, (req, res) => {
   res.render('home')
 });
 
-router.get('/movie/:id', async (req, res) => {
+router.get('/movie/:id', withAuth, async (req, res) => {
   try {
     const movie = await Movie.findByPk(req.params.id, {
       include: [{
@@ -64,8 +64,9 @@ router.get('/movie/:id', async (req, res) => {
   }
 });
 
-router.get('/review/:id', (req, res) => {
-  res.render('review')
+router.get('/review/:id', withAuth, (req, res) => {
+  let userId = req.session.userId;
+  res.render('review', {userId})
 });
 
 router.get('/editReview/:id', async (req, res) => {
