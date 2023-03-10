@@ -21,6 +21,8 @@ async function loadAutoComplete(){
         source: titles,
         minLength: 4,
         select: async function(event, ui) {
+            var range = [1, 10];
+            var pageNum = 1;
             const response = await fetch(`/api/movies/get/one/${ui.item.value}`);
             const oneMovie = await response.json();
             let movieData = [];
