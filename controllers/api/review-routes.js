@@ -2,11 +2,13 @@ const router = require('express').Router();
 const { Review } = require('../../models');
 const withAuth = require('../../utils/auth');
 
+// need to include movieId in review post/put!!
+
 router.post('/', withAuth, async (req, res) => {
     try {
         const newReview = await Review.create({
           ...req.body,
-          userId: req.session.userid,
+          userId: req.session.userId,
         });
     
         res.status(200).json(newReview);
@@ -20,7 +22,7 @@ router.put('/:id', withAuth, async (req, res) => {
         const reviewData = await Review.update(req.body, {
             where: {
                 id: req.params.id,
-                userId: req.session.userid,
+                userId: req.session.userId,
             },
         });
   
@@ -40,7 +42,7 @@ router.delete('/:id', withAuth, async (req, res) => {
         const reviewData = await Review.destroy({
             where: {
                 id: req.params.id,
-                userId: req.session.userid,
+                userId: req.session.userId,
             },
         });
   
