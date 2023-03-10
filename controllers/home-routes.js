@@ -34,8 +34,8 @@ router.get('/dashboard', withAuth, async (req, res) => {
 });
 
 router.get('/search', withAuth, (req, res) => {
-  let user = req.session;
-  res.render('search', {user})
+  let userId = req.session.userId;
+  res.render('search', {userId})
 });
 
 router.get('/logout', withAuth, (req, res) => {

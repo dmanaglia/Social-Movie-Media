@@ -35,7 +35,7 @@ async function searchTerm(){
     renderResults(results);
 }
 
-function renderResults(results){
+async function renderResults(results){
     $('#list-container').empty();
     for(const movie of results){
         let imgCol = $('<div>');
@@ -48,6 +48,7 @@ function renderResults(results){
         imgContainer.append(img);
         imgCol.append(imgContainer);
         $('#list-container').append(imgCol);
+
         let infoCol = $('<div>');
         infoCol.attr('class', 'col-9');
         let infoContainer = $('<div>');
@@ -81,7 +82,12 @@ function renderResults(results){
         let movieLink = $('<a>');
         movieLink.attr('class', 'btn btn-primary');
         movieLink.attr('href', `/movie/${movie.id}`);
-        movieLink.text('View Movie')
+        let reviewed = await hasReviewed(movie.id);
+        if(reviewed){
+            movieLink.text('Edit Review');
+        } else{
+            movieLink.text('Add Review');
+        }
         footerContainer.append(movieLink);
         infoContainer.append(footerContainer);
 
@@ -95,6 +101,11 @@ function parseLength(movieLength){
     const hours = Math.floor(movieLength/60);
     const minutes = movieLength % 60;
     return `${hours} hours ${minutes} minutes`
+}
+
+async function hasReviewed(movieId){
+    let response = await fetch(`/api/reviews/${movieId}`);
+    return await response.json();
 }
 
 $('#submitSearch').click(searchTerm);

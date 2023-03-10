@@ -6,7 +6,7 @@ router.post('/', withAuth, async (req, res) => {
     try {
         const newReview = await Review.create({
           ...req.body,
-          userId: req.session.userid,
+          userId: req.session.userId,
         });
     
         res.status(200).json(newReview);
@@ -20,7 +20,7 @@ router.put('/:id', withAuth, async (req, res) => {
         const reviewData = await Review.update(req.body, {
             where: {
                 id: req.params.id,
-                userId: req.session.userid,
+                userId: req.session.userId,
             },
         });
   
@@ -40,7 +40,7 @@ router.delete('/:id', withAuth, async (req, res) => {
         const reviewData = await Review.destroy({
             where: {
                 id: req.params.id,
-                userId: req.session.userid,
+                userId: req.session.userId,
             },
         });
   
@@ -51,6 +51,26 @@ router.delete('/:id', withAuth, async (req, res) => {
   
         res.status(200).json(reviewData);
     } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
+router.get('/:movieId', withAuth, async (req, res) => {
+    let user = req.session;
+    try {
+      const reviewData = await Review.findOne({
+        where: {
+          userId: user.userId,
+          movieId: req.params.movieId
+        }
+      });
+      if(reviewData){
+        res.send('1');
+      } else {
+        res.send('0');
+      }
+    } catch (err) {
+        console.log(err);
         res.status(500).json(err);
     }
 });
