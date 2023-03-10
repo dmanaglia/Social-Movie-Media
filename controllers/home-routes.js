@@ -66,7 +66,7 @@ router.get('/movie/:id', withAuth, async (req, res) => {
 
 router.get('/review/:id', withAuth, (req, res) => {
   let userId = req.session.userId;
-  res.render('review', {userId})
+  res.render('addReview', {userId})
 });
 
 router.get('/editReview/:id', async (req, res) => {
