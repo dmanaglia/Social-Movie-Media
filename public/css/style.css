@@ -1,29 +1,60 @@
 :root {
-    --one: #000000;
-    --two: #747474;
-    --three: #ffffff;
+    --richblack: #04151F;
+    --lightrichblack: #9ea0b4;
+    --darkpaynesgray: #3b3c48;
+    --paynesgray: #5D5F71;
+    --paledogwood: #D4BEBE;
+    --lavender: #E1DEE9;
+    --lightlavender: #D5CFE1;
     --error: red;
     --pass: green;
   }
 
-body,
+* {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--paynesgray) !important;
+    color: var(--richblack);
+}
+
+#card-rows,
 .card {
-    background-color: rgb(221, 221, 221) !important;
+    background-color: var(--lightrichblack) !important;
+}
+
+a {
+    font-weight: bold;
+    color: var(--richblack);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--lavender);
+    text-decoration: none;
 }
 
 input {
-    background-color: var(--three) !important;
+    background-color: white !important;
 }
 
 button {
-    background-color: rgb(63, 159, 255) !important;
+    background-color: var(--darkpaynesgray) !important;
+    border: var(--paynesgray) !important;
+    color:#04151F !important;
+}
+
+button:hover {
+    background-color: var(--lavender) !important;
 }
 
 form {
-    margin: 5px;
+    margin: 2px;
     padding: 20px;
-    border: solid black 2px;
-    border-radius: 2rem;
+    border: solid var(--richblack) 2px;
+    border-radius: 1rem;
+    background-color: var(--lightrichblack) !important;
 }
 
 .page-link:hover {
@@ -32,4 +63,11 @@ form {
 
 .movie-poster {
     content: url("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png");
+}
+
+#movie-search-form {
+    margin: 2px;
+    padding: 2px;
+    border: solid var(--richblack) 1px;
+    border-radius: 1rem;
 }
