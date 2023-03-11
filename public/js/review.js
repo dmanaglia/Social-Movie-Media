@@ -26,7 +26,6 @@ const newFormHandler = async (event) => {
 
 const goBack = (event) => {
     event.preventDefault();
-    console.log('workingish');
     history.back();
 }
 
