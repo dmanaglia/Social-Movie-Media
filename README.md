@@ -53,28 +53,17 @@ This project is licensed under the MIT license.
 - Responsive Webpage
 - Interactive Webpage
 - User Signup/Login/Logout with validations
-- Search Bar
+- Search Engine
 - Logo
 
 ## :sparkles: Technologies Used
 
-### Dataset
-- [Movies](https://www.kaggle.com/datasets/georgescutelnicu/top-100-popular-movies-from-2003-to-2022-imdb?resource=download)
-
-### Framework
-- [Bootstrap](https://getbootstrap.com/)
-
-### Wireframe
-- [Figma](https://www.figma.com/file/IxDNxumuYMueUuQJjAppuS/Untitled?node-id=0-1)
-
-### Color Palette
-- [Coolors](https://coolors.co/d5cfe1-e1dee9-d4bebe-04151f-5d5f71)
-
-### Color Palette
-- [Coolors](https://coolors.co/d5cfe1-e1dee9-d4bebe-04151f-5d5f71)
-### Applications
-- VS Code
-- Heroku
+- **Dataset:** [Top 100 popular movies from 2003 to 2022 (iMDB)](https://www.kaggle.com/datasets/georgescutelnicu/top-100-popular-movies-from-2003-to-2022-imdb?resource=download)
+- **Framework:** [Bootstrap](https://getbootstrap.com/)
+- **Logo:** [Free Logo Design](https://www.freelogodesign.org/) / [Remove bg](https://www.remove.bg/upload)
+- **Wireframe:** [Figma](https://www.figma.com/file/IxDNxumuYMueUuQJjAppuS/Untitled?node-id=0-1)
+- **Color Palette:** [Coolors](https://coolors.co/d5cfe1-e1dee9-d4bebe-04151f-5d5f71)
+- **Applications:** VS Code, Heroku.
 
 ## :tornado: Challenges
 - Challenge 1
