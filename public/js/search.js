@@ -71,9 +71,14 @@ async function renderResults({total, movieData}){
             let imgCol = $('<div>');
             imgCol.attr('class', 'col-3');
             let imgContainer = $('<div>');
-            imgContainer.attr('class', 'card h-100');
+            imgContainer.attr('class', 'card');
             let img = $('<img>');
-            img.attr('class', 'card-img movie-poster');
+            if(movie.poster_link){
+                img.attr('src', movie.poster_link);
+                img.attr('class', 'card-img');
+            } else{
+                img.attr('class', 'card-img movie-poster');
+            }
             img.attr('alt', movie.Title);
             imgContainer.append(img);
             imgCol.append(imgContainer);

@@ -18,7 +18,11 @@
         {{#each reviews as |review|}}
         <div class="col">
             <div class="card h-100">
-                <img class="card-img-top movie-poster" alt="...">
+                {{#if review.movie.poster_link}}
+                <img src="{{review.movie.poster_link}}" class="card-img-top" alt="{{review.movie.Title}}">
+                {{else}}
+                <img class="card-img-top movie-poster" alt="{{review.movie.Title}}">
+                {{/if}}
                 <div class="card-body">
                     <h5 class="card-title"><a href="/movie/{{review.movie.id}}">{{review.movie.Title}}</a></h5>
                 </div>
