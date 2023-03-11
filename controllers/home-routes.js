@@ -1,7 +1,20 @@
 const router = require('express').Router();
-const { log } = require('handlebars');
 const { Review, User, Movie } = require('../models');
 const withAuth = require('../utils/auth');
+
+router.get('/home', async (req, res) => {
+  const reviewData = await Review.findAll({
+    order: [['updated_at', 'DESC']],
+    include: [{
+      model: Movie
+    }, 
+    {
+      model: User
+    }]
+  })
+  const reviews = reviewData.map((review) => review.get({ plain: true }));
+  res.render('home', {reviews});
+})
 
 // router is either login/1 to login or login/0 sign up
 router.get('/login/:login', (req, res) => {
@@ -42,7 +55,7 @@ router.get('/logout', withAuth, (req, res) => {
   req.session.logged_in = false;
   req.session.userId = null;
   req.session.username = null;
-  res.render('home')
+  res.render('welcome')
 });
 
 router.get('/movie/:id', withAuth, async (req, res) => {
@@ -55,7 +68,6 @@ router.get('/movie/:id', withAuth, async (req, res) => {
         }]
       }]
     });
-    console.log(movie.get({ plain: true }));
     const userId = req.session.userId;
     // res.status(200).json(movie);
     res.render('movie', {userId, movie: movie.get({ plain: true })})
@@ -77,7 +89,6 @@ router.get('/editReview/:id', async (req, res) => {
           return;
       }
       const editReview = editData.get({ plain: true });
-      console.log(editReview);
       res.render('editReview', {editReview});
     } catch (err) {
         res.status(500).json(err);
@@ -86,7 +97,11 @@ router.get('/editReview/:id', async (req, res) => {
 
 router.get('*', async (req, res) => {
     try {
-      res.render('home');
+      if(req.session.logged_in){
+        res.render('home');
+      } else {
+        res.render('welcome');
+      }
     } catch (err) {
       res.status(500).json(err);
     }
