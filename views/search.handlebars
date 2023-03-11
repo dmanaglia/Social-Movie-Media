@@ -18,18 +18,18 @@
         <div class="form-text"><span id="result-count"></span> Results Found.</div>
     </form>
 </header>
-<div class="d-flex flex-column m-5">
+<div class="d-flex flex-column m-5" id="top-of-page">
     <div class="mx-auto">
-        <nav aria-label="Page navigation example">
+        <nav aria-label="Page navigation">
             <ul class="pagination">
                 <li class="page-item">
                 <a class="page-link" id="previous-page-top" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
+                    <span aria-hidden="true">&laquo;</span> Previous
                 </a>
                 </li>
                 <li class="page-item">
                 <a class="page-link" id="next-page-top" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
+                    Next <span aria-hidden="true">&raquo;</span>
                 </a>
                 </li>
             </ul>
@@ -46,16 +46,16 @@
     </div>
 </main>
 <div class="d-flex justify-content-center m-5">
-    <nav aria-label="Page navigation example">
+    <nav aria-label="Page navigation">
         <ul class="pagination">
             <li class="page-item">
-            <a class="page-link" id="previous-page-bottom" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
+            <a href="#top-of-page" class="page-link" id="previous-page-bottom" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span> Previous
             </a>
             </li>
             <li class="page-item">
-            <a class="page-link" id="next-page-bottom" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
+            <a href="#top-of-page" class="page-link" id="next-page-bottom" aria-label="Next">
+                Next <span aria-hidden="true">&raquo;</span>
             </a>
             </li>
         </ul>

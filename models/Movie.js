@@ -62,6 +62,10 @@ Movie.init(
     Country_of_origin: {
         type: DataTypes.STRING,
         allowNull: true
+        },
+    poster_link: {
+        type: DataTypes.STRING,
+        allowNull: true
         }
     },
   {
