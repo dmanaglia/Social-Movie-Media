@@ -24,5 +24,11 @@ const newFormHandler = async (event) => {
     }
 };
 
-// adjust class name as necessary based on what's used in the form
+const goBack = (event) => {
+    event.preventDefault();
+    console.log('workingish');
+    history.back();
+}
+
+document.querySelector('#go-back-btn').addEventListener('click', goBack);
 document.querySelector('#submit-review').addEventListener('click', newFormHandler);

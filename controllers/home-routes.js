@@ -2,7 +2,13 @@ const router = require('express').Router();
 const { Review, User, Movie } = require('../models');
 const withAuth = require('../utils/auth');
 
-router.get('/home', async (req, res) => {
+// router is either login/1 to login or login/0 to sign up
+router.get('/login/:login', (req, res) => {
+  let login = req.params.login * 1;
+  res.render('login', {login})
+});
+
+router.get('/home', withAuth, async (req, res) => {
   const reviewData = await Review.findAll({
     order: [['updated_at', 'DESC']],
     include: [{
@@ -14,12 +20,6 @@ router.get('/home', async (req, res) => {
   })
   const reviews = reviewData.map((review) => review.get({ plain: true }));
   res.render('home', {reviews});
-})
-
-// router is either login/1 to login or login/0 sign up
-router.get('/login/:login', (req, res) => {
-  let login = req.params.login * 1;
-  res.render('login', {login})
 });
 
 router.get('/dashboard', withAuth, async (req, res) => {
@@ -69,21 +69,25 @@ router.get('/movie/:id', withAuth, async (req, res) => {
       }]
     });
     const userId = req.session.userId;
-    // res.status(200).json(movie);
-    res.render('movie', {userId, movie: movie.get({ plain: true })})
+    res.render('movie', {userId, movie: movie.get({ plain: true })});
   } catch (err) {
     res.status(400).json(err);
   }
 });
 
-router.get('/review/:id', withAuth, (req, res) => {
-  let userId = req.session.userId;
-  res.render('addReview', {userId})
+router.get('/review/:id', withAuth, async (req, res) => {
+  const movieData = await Movie.findByPk(req.params.id);
+  const movie = movieData.get({ plain: true })
+  res.render('addReview', {movie});
 });
 
-router.get('/editReview/:id', async (req, res) => {
-  try{ 
-      const editData = await Review.findByPk(req.params.id);
+router.get('/editReview/:id', withAuth, async (req, res) => {
+  try{
+      const editData = await Review.findByPk(req.params.id, {
+        include: [{
+          model: Movie
+        }]
+      });
       if(!editData) {
           res.status(404).json({message: 'No review with this id!'});
           return;

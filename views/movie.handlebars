@@ -1,9 +1,6 @@
-<header class="w-50 mx-auto text-center mt-5">
+<header class="mt-5 text-center">
     <img src="/assets/logo.png" alt="Logo" width="200" height="200">
-</header>
-
-<header class="w-25 mx-auto mt-5 text-center">
-    <nav class="d-flex justify-content-around">
+    <nav class="d-flex justify-content-around w-25 mx-auto">
         <a href="/home">Home</a>
         <p>-</p>
         <a href="/dashboard">Dashboard</a>
@@ -47,14 +44,19 @@
                         Country of origin: {{movie.Country_of_origin}}
                         </p>
                     </div>
-                    <div class="card-footer">
+                    <div class="card-footer d-flex justify-content-between">
+                        <button class="btn btn-primary" onclick="history.back()">Go Back</button>
                         <a id="edit-or-add-review" class="btn btn-primary"></a>
                     </div>
                 </div>
             </div>
             <div>
                 <div>
+                    {{#if movie.reviews}}
                     <h1>Reviews</h1>
+                    {{else}}
+                    <h1>No Reviews</h1>
+                    {{/if}}
                 </div>
                 {{#each movie.reviews as |review|}}
                     <div style="margin-bottom: 1rem;">
