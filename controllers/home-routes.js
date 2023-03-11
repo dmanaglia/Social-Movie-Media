@@ -1,5 +1,4 @@
 const router = require('express').Router();
-const { log } = require('handlebars');
 const { Review, User, Movie } = require('../models');
 const withAuth = require('../utils/auth');
 
@@ -55,7 +54,6 @@ router.get('/movie/:id', withAuth, async (req, res) => {
         }]
       }]
     });
-    console.log(movie.get({ plain: true }));
     const userId = req.session.userId;
     // res.status(200).json(movie);
     res.render('movie', {userId, movie: movie.get({ plain: true })})
@@ -77,7 +75,6 @@ router.get('/editReview/:id', async (req, res) => {
           return;
       }
       const editReview = editData.get({ plain: true });
-      console.log(editReview);
       res.render('editReview', {editReview});
     } catch (err) {
         res.status(500).json(err);
