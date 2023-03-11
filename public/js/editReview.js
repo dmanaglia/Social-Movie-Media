@@ -1,15 +1,19 @@
 const editFormHandler = async (event) => {
     event.preventDefault();
-  
+
+    const currentUrl = window.location.toString().split('/');
+    const reviewId = currentUrl[currentUrl.length - 1];
+
     const title = document.querySelector('#review-title').value.trim();
     const body = document.querySelector('#review-body').value.trim();
     const rate = document.querySelector('input[name="rateOptions"]:checked').value;
+
     const movieId = event.target.getAttribute('data-id');
-  
-    if (title && body && rate && movieId) {
-        const response = await fetch(`/api/reviews`, {
+
+    if (reviewId && title && body && rate) {
+        const response = await fetch(`/api/reviews/${reviewId}`, {
             method: 'PUT',
-            body: JSON.stringify({ title, body, rate, movieId }),
+            body: JSON.stringify({ title, body, rate }),
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -18,7 +22,7 @@ const editFormHandler = async (event) => {
         if (response.ok) {
             document.location.replace(`/movie/${movieId}`);
         } else {
-            alert('Failed to create review');
+            alert('Failed to edit review');
         }
     }
 };
@@ -38,3 +42,6 @@ const delButtonHandler = async (event) => {
         }
     }
 };
+
+document.querySelector('#edit-review').addEventListener('click', editFormHandler);
+document.querySelector('#delete-review').addEventListener('click', delButtonHandler);
