@@ -2,6 +2,20 @@ const router = require('express').Router();
 const { Review, User, Movie } = require('../models');
 const withAuth = require('../utils/auth');
 
+router.get('/home', async (req, res) => {
+  const reviewData = await Review.findAll({
+    order: [['updated_at', 'DESC']],
+    include: [{
+      model: Movie
+    }, 
+    {
+      model: User
+    }]
+  })
+  const reviews = reviewData.map((review) => review.get({ plain: true }));
+  res.render('home', {reviews});
+})
+
 // router is either login/1 to login or login/0 sign up
 router.get('/login/:login', (req, res) => {
   let login = req.params.login * 1;
@@ -41,7 +55,7 @@ router.get('/logout', withAuth, (req, res) => {
   req.session.logged_in = false;
   req.session.userId = null;
   req.session.username = null;
-  res.render('home')
+  res.render('welcome')
 });
 
 router.get('/movie/:id', withAuth, async (req, res) => {
@@ -83,7 +97,11 @@ router.get('/editReview/:id', async (req, res) => {
 
 router.get('*', async (req, res) => {
     try {
-      res.render('home');
+      if(req.session.logged_in){
+        res.render('home');
+      } else {
+        res.render('welcome');
+      }
     } catch (err) {
       res.status(500).json(err);
     }
