@@ -43,5 +43,11 @@ const delButtonHandler = async (event) => {
     }
 };
 
+const goBack = (event) => {
+    event.preventDefault();
+    history.back();
+}
+
+document.querySelector('#go-back-btn').addEventListener('click', goBack);
 document.querySelector('#edit-review').addEventListener('click', editFormHandler);
 document.querySelector('#delete-review').addEventListener('click', delButtonHandler);
