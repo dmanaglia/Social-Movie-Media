@@ -1,7 +1,7 @@
 :root {
-    --richblack: #04151F;
-    --lightrichblack: #9ea0b4;
-    --darkpaynesgray: #3b3c48;
+    --richblack: #04151F; /* text color and borders */
+    --lightrichblack: #9ea0b4; 
+    --darkpaynesgray: #3b3c48; /* background color */
     --paynesgray: #5D5F71;
     --paledogwood: #D4BEBE;
     --lavender: #E1DEE9;
@@ -60,7 +60,17 @@ a:hover {
 }
 
 input {
-    background-color: white !important;
+    background-color: green;
+    background-image: green !important;
+}
+
+/* .form-check-input {
+    accent-color: black !important;
+} */
+
+input[type=radio]
+{
+    accent-color: black !important;
 }
 
 .btn,
