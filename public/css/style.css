@@ -6,8 +6,6 @@
     --paledogwood: #D4BEBE;
     --lavender: #E1DEE9;
     --lightlavender: #D5CFE1;
-    --error: red;
-    --pass: green;
   }
 
 * {
@@ -42,12 +40,6 @@ body {
     background-color: var(--lavender) !important;
 }
 
-img {
-    margin: 0px;
-    padding: 0px;
-    background-color: transparent;
-}
-
 a {
     font-weight: bold;
     color: var(--richblack);
@@ -55,34 +47,26 @@ a {
 }
 
 a:hover {
-    color: var(--lavender);
+    color: var(--paledogwood);
     text-decoration: none;
 }
 
-input {
-    background-color: green;
-    background-image: green !important;
-}
-
-/* .form-check-input {
-    accent-color: black !important;
-} */
-
-input[type=radio]
-{
-    accent-color: black !important;
+.form-check-input:checked {
+    background-color: var(--richblack);
+    background-color: var(--richblack);
 }
 
 .btn,
 .page-link {
     background-color: var(--darkpaynesgray) !important;
     border: var(--paynesgray) !important;
-    color:#04151F !important;
+    color: var(--lightrichblack) !important;
 }
 
 .btn:hover,
 .page-link:hover {
-    background-color: var(--lavender) !important;
+    background-color: var(--paledogwood) !important;
+    color: var(--richblack) !important;
 }
 
 form {

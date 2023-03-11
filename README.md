@@ -52,18 +52,24 @@ This project is licensed under the MIT license.
 - CSS Framework
 - Responsive Webpage
 - Interactive Webpage
+- Accessible Webpage
 - User Signup/Login/Logout with validations
 - Search Engine
 - Logo
 
-## :sparkles: Technologies Used
+## :sparkles: Assets
+
+### Technologies Used
 
 - **Dataset:** [Top 100 popular movies from 2003 to 2022 (iMDB)](https://www.kaggle.com/datasets/georgescutelnicu/top-100-popular-movies-from-2003-to-2022-imdb?resource=download)
 - **Framework:** [Bootstrap](https://getbootstrap.com/)
-- **Logo:** [Free Logo Design](https://www.freelogodesign.org/) / [Remove bg](https://www.remove.bg/upload)
 - **Wireframe:** [Figma](https://www.figma.com/file/IxDNxumuYMueUuQJjAppuS/Untitled?node-id=0-1)
 - **Color Palette:** [Coolors](https://coolors.co/d5cfe1-e1dee9-d4bebe-04151f-5d5f71)
 - **Applications:** VS Code, Heroku.
+
+### Resources
+- **Logo:** [Free Logo Design](https://www.freelogodesign.org/) / [Remove bg](https://www.remove.bg/upload)
+- **Movie Posters:** [Amazon](https://www.amazon.com/)
 
 ## :tornado: Challenges
 - Challenge 1
