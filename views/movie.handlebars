@@ -50,23 +50,26 @@
                     <div class="card-footer">
                         <a id="edit-or-add-review" class="btn btn-primary"></a>
                     </div>
-                    <div class="card-title">
-                        <h1>Reviews</h1>
-                    </div>
-                    {{#each movie.reviews as |review|}}
-                    <span class="border border-secondary w-100">
-                        <div>
-                            <br>
-                            <h3>{{review.title}}</h3> 
-                            <p class="review-body">{{review.body}}</p>
-                        </div>
-                        <div>
-                            Rating is {{review.rate}}/5 stars | 
-                            Posted by {{review.user.username}}
-                        </div>
-                    </span>
-                    {{/each}}
                 </div>
+            </div>
+            <div>
+                <div>
+                    <h1>Reviews</h1>
+                </div>
+                {{#each movie.reviews as |review|}}
+                    <div style="margin-bottom: 1rem;">
+                        <span>
+                            <div class="card">
+                                <div class="card-header"><h3>{{review.title}}</h3></div>
+                                <div class="card-body"><p>{{review.body}}</p></div>
+                                <div class="card-footer">
+                                    Rating is {{review.rate}}/5 stars | 
+                                    Posted by {{review.user.username}}
+                                </div>
+                            </div>    
+                        </span>
+                    </div>
+                {{/each}}
             </div>
         </div>
     </div>
