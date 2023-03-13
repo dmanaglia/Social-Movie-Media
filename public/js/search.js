@@ -73,7 +73,9 @@ async function renderResults({total, movieData}){
     }
     $('#result-count').text(total);
     let displayRange = [...range];
-    if(displayRange[1] > total){
+    if(displayRange[1] > total && total !== 0){
+        displayRange[1] = total;
+    } else if(total === 0){
         displayRange[0] = total;
         displayRange[1] = total;
     }
@@ -82,7 +84,7 @@ async function renderResults({total, movieData}){
     if(total !== 0){
         for(const movie of movieData){
             let imgCol = $('<div>');
-            imgCol.attr('class', 'col-3');
+            imgCol.attr('class', 'col-12 col-md-3');
             let imgContainer = $('<div>');
             imgContainer.attr('class', 'card');
             let img = $('<img>');
@@ -98,7 +100,7 @@ async function renderResults({total, movieData}){
             $('#list-container').append(imgCol);
 
             let infoCol = $('<div>');
-            infoCol.attr('class', 'col-9');
+            infoCol.attr('class', 'col-12 col-md-9');
             let infoContainer = $('<div>');
             infoContainer.attr('class', 'card h-100');
             let titleContainer = $('<div>');
@@ -198,7 +200,10 @@ function decideSearch(event){
 
     range = [1, 10];
     pageNum = 1;
-
+    $('#movieSearch').autocomplete('close');
+    $('#actorSearch').autocomplete('close');
+    $('#directorSearch').autocomplete('close');
+    $('#genreSearch').autocomplete('close');
     $('#movieSearch').val('');
     $('#actorSearch').val('');
     $('#directorSearch').val('');

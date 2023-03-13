@@ -6,12 +6,21 @@ const withAuth = require('../../utils/auth');
 
 router.post('/', withAuth, async (req, res) => {
     try {
-        const newReview = await Review.create({
-          ...req.body,
-          userId: req.session.userId,
-        });
-    
-        res.status(200).json(newReview);
+        const reviewData = await Review.findOne({
+            where: {
+              userId: req.session.userId,
+              movieId: req.body.movieId
+            }
+          });
+        if(reviewData){
+            res.status(300).json(reviewData)
+        } else{
+            const newReview = await Review.create({
+                ...req.body,
+                userId: req.session.userId,
+            });
+            res.status(200).json(newReview);
+        }
     } catch (err) {
         res.status(400).json(err);
     }

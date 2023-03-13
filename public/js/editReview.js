@@ -48,6 +48,14 @@ const goBack = (event) => {
     history.back();
 }
 
+const fillRadio = () => {
+    const oldRating = document.querySelector('#review-rate').getAttribute('data-id');
+    const oldRadio = document.querySelector(`#rate${oldRating}`);
+    oldRadio.setAttribute('checked', "");
+}
+
+fillRadio();
+
 document.querySelector('#go-back-btn').addEventListener('click', goBack);
 document.querySelector('#edit-review').addEventListener('click', editFormHandler);
 document.querySelector('#delete-review').addEventListener('click', delButtonHandler);

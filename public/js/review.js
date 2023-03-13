@@ -15,12 +15,18 @@ const newFormHandler = async (event) => {
                 'Content-Type': 'application/json',
             },
          });
-  
-        if (response.ok) {
+         console.log(response.status);
+        if (response.status === 200) {
             document.location.replace(`/movie/${movieId}`);
-        } else {
+        } else if(response.status === 300){
+            let reviewData = await response.json();
+            alert(`You have already reviewed this movie...redirecting to edit review page`);
+            document.location.replace(`/editReview/${reviewData.id}`);
+        } else{
             alert('Failed to create review');
         }
+    } else {
+        alert('You must fill out all fields');
     }
 };
 
