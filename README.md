@@ -11,7 +11,7 @@ Our motivation for creating this application was in part due to the Oscars this 
 
 ### User Story
 - AS A person who likes to watch movies
-- I WANT have a social media website for movies where I can search movies and write reviews on them
+- I WANT to have a social media website for movies where I can search movies and write reviews on them
 - SO THAT I can have a place for the movies I have seen and my reviews on these movies.
 
 ## Table of Contents
