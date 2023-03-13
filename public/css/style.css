@@ -1,3 +1,4 @@
+/* Color Palette from Coolors */
 :root {
     --richblack: #04151F; /* Text Color */
     --paynesgray: #5D5F71; /* Background color */
@@ -5,7 +6,6 @@
     --lavender: #E1DEE9; /* Child Container Color  */
     --darkpaynesgray: #3b3c48; /* Button Color */
     --paledogwood: #D4BEBE; /* Hover Color */
-    --lightlavender: #D5CFE1; /* Not being used */
   }
 
 * {
@@ -52,6 +52,12 @@ form {
     border-radius: 1rem;
 }
 
+.movie-keys {
+    font-weight: bold;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--darkpaynesgray)
+}
+
 #no-reviews {
     margin: 150px;
     padding: 20px;
@@ -66,13 +72,14 @@ a {
     text-decoration: none;
 }
 
+/* Changes color and removes underline from links when hovering */
 a:hover {
     color: var(--paledogwood);
     text-decoration: none;
 }
 
+/* Give radio selection a color when selected (checked) */
 .form-check-input:checked {
-    background-color: var(--richblack);
     background-color: var(--richblack);
 }
 
@@ -83,16 +90,19 @@ a:hover {
     color: var(--lightrichblack) !important;
 }
 
+/* Change color and text color when hovered on */
 .btn:hover,
 .page-link:hover {
     background-color: var(--paledogwood) !important;
     color: var(--richblack) !important;
 }
 
+/* Cursor changes to a pointer when hovered on */
 .page-link:hover {
     cursor: pointer;
 }
 
+/* Placeholder image for movie posters */
 .movie-poster {
     content: url("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png");
 }
