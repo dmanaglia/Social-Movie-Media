@@ -14,8 +14,9 @@
 <main>
     <div class="container text-center">
         <div class="row gx-5 gy-5">
-            <div class="col-3">
-                <div class="card"> <!-- Portrays the poster of the movie on the top left pf the page -->
+            <div class="col-8 col-md-3">
+                <div class="card">
+                    <!-- Portrays the poster of the movie on the top left pf the page -->
                     {{#if movie.poster_link}}
                     <img src="{{movie.poster_link}}" class="card-img-top" alt="{{movie.Title}}">
                     {{else}}
@@ -23,7 +24,7 @@
                     {{/if}}
                 </div>
             </div>
-            <div class="col-9">
+            <div class="col-12 col-md-9">
                 <div class="card h-100">
                     <div class="card-title">
                         <h1>{{movie.Title}}</h1>
