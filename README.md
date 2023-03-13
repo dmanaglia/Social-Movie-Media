@@ -21,7 +21,7 @@
 
 * [Features](#confetti_ball-features)
 
-* [Technologies Used](#sparkles-technologies-used)
+* [Assets](#sparkles-assets)
 
 * [Challenges](#tornado-challenges)
 
@@ -74,10 +74,20 @@ This project is licensed under the MIT license.
 - **Color Palette:** [Coolors](https://coolors.co/d5cfe1-e1dee9-d4bebe-04151f-5d5f71)
 - **Applications:** VS Code, Heroku.
 
+### Packages
+- [Express](https://www.npmjs.com/package/express) Package
+- [Express Handlebars](https://www.npmjs.com/package/express-handlebars) Package
+- [express-session](https://www.npmjs.com/package/express-session) Package
+- [connect-session-sequelize](https://www.npmjs.com/package/connect-session-sequelize) Package
+- [MySQL2](https://www.npmjs.com/package/mysql2) Package
+- [Sequelize](https://www.npmjs.com/package/sequelize) Package
+- [dotenv](https://www.npmjs.com/package/dotenv) Package
+- [bcrypt](https://www.npmjs.com/package/bcrypt) Package
+
 
 ### Resources
 - **Logo:** [Free Logo Design](https://www.freelogodesign.org/) / [Remove bg](https://www.remove.bg/upload)
-- **Movie Posters:** [Amazon](https://www.amazon.com/)
+- **Movie Posters:** [IMDb](https://www.imdb.com/)
 
 ## :tornado: Challenges
 - Challenge 1
