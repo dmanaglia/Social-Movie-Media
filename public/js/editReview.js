@@ -6,7 +6,7 @@ const editFormHandler = async (event) => {
     const currentUrl = window.location.toString().split('/');
     const reviewId = currentUrl[currentUrl.length - 1];
 
-    // pull title, body, and rate user's inputs into form
+    // pull title, body, and rate from user's inputs into form
     const title = document.querySelector('#review-title').value.trim();
     const body = document.querySelector('#review-body').value.trim();
     const rate = document.querySelector('input[name="rateOptions"]:checked').value;
@@ -60,14 +60,17 @@ const goBack = (event) => {
     history.back();
 }
 
+// selects a radio option corresponding to what rating was previously selected in the review
 const fillRadio = () => {
     const oldRating = document.querySelector('#review-rate').getAttribute('data-id');
     const oldRadio = document.querySelector(`#rate${oldRating}`);
     oldRadio.setAttribute('checked', "");
 }
 
+// run fillRadio function when page starts
 fillRadio();
 
+// add event listeners to the buttons
 document.querySelector('#go-back-btn').addEventListener('click', goBack);
 document.querySelector('#edit-review').addEventListener('click', editFormHandler);
 document.querySelector('#delete-review').addEventListener('click', delButtonHandler);
