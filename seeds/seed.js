@@ -8,6 +8,7 @@ const reviewData = require('./reviewData.json');
 const seedDatabase = async () => {
   await sequelize.sync({ force: true });
 
+  // COMMENTED OUT SO HEROKU DOESN'T USE THESE
   // await User.bulkCreate(userData, {
   //   individualHooks: true,
   //   returning: true,
@@ -18,6 +19,7 @@ const seedDatabase = async () => {
     returning: true,
   });
 
+  // COMMENTED OUT SO HEROKU DOESN'T USE THESE
   // await Review.bulkCreate(reviewData, {
   //   individualHooks: true,
   //   returning: true,
