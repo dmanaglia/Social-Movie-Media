@@ -1,8 +1,9 @@
+// Require Sequelize, Sequelize Object, and Bcrypt for hasing password
 const { Sequelize, Model, DataTypes } = require('sequelize');
 const bcrypt = require('bcrypt');
 const sequelize = require('../config/connection');
 
-// create our User model
+// User table extending for Model from Sequelize
 class User extends Model {
   // set up method to run on instance data (per user) to check password
   checkPassword(loginPw) {
@@ -10,6 +11,7 @@ class User extends Model {
   }
 }
 
+// User table with its columns
 User.init(
   {
     id: {

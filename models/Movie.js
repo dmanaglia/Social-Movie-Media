@@ -1,8 +1,11 @@
+// Require Sequelize and Sequelize Object
 const { Sequelize, Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
+// Movie table extending for Model from Sequelize
 class Movie extends Model {}
 
+// Movie table with its columns
 Movie.init(
   {
     id: {
