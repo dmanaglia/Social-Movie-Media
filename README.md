@@ -111,19 +111,24 @@ This project is licensed under the MIT license.
 - **Color Palette:** [Coolors](https://coolors.co/d5cfe1-e1dee9-d4bebe-04151f-5d5f71)
 
 ## :tornado: Challenges
-- Challenge 1
-- Challenge 2
-- Challenge 3
+- Time constraint
+- Inputting previous review values onto the edit review page
+- Adding Movie Images
+- Updating/Deleting Reviews
 
 ## :star2: Successes
-- Success 1
-- Success 2
-- Success 3
+- Models functioning well
+- User Interface does not have issues
+- Having handlebar page display when routed properly
+- Allowing for a combination of searches
+- Updating/Deleting Reviews
 
 ## :bulb: Future Development
-- Future Development 1
-- Future Development 2
-- Future Development 3
+- Friends List
+- More movies, add TV Shows, etc. (more content)
+- Display Average User Rating
+- Display trailers/clips as background or when hovering over movie
+- Further Polish UI
 
 ## :medal_military: Credit
 - Bootcamp Instructor and TA.
