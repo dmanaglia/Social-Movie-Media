@@ -2,34 +2,57 @@ var range = [1, 10];
 var pageNum = 1;
 var lastPage = 200;
 var lastSearch = '';
+const genreList = [
+	"Animation",
+	"Comedy",
+	"History",
+	"Drama",
+	"Horror",
+	"Musical",
+	"Crime",
+	"Mystery",
+	"Adventure",
+	"War",
+	"Music",
+	"Sport",
+	"Action",
+	"Thriller",
+	"Western",
+	"Family",
+	"Fantasy",
+	"Biography",
+	"Sci-Fi",
+	"Romance"
+]
 
 async function loadPage(){
-    const res = await fetch(`/api/movies/get/all/${range.join('-')}`);
-    lastSearch = `/api/movies/get/all/`;
+    const res = await fetch(`/api/movies/getAll/${range.join('-')}`);
+    lastSearch = `/api/movies/getAll/`;
     const results = await res.json();
     renderResults(results);
 }
 
 async function loadAutoComplete(){
-    let titles = [];
-    const res = await fetch(`/api/movies/allTitles`);
-    const data = await res.json();
-    for(const movie of data){
-        titles.push({label: movie.Title, value: movie.id});
-    }
+    const titleRes = await fetch(`/api/movies/allTitles`);
+    const titleData = await titleRes.json();
     $( "#movieSearch" ).autocomplete({
-        source: titles,
+        source: titleData,
         minLength: 4,
-        select: async function(event, ui) {
-            range = [1, 10];
-            pageNum = 1;
-            const response = await fetch(`/api/movies/get/one/${ui.item.value}`);
-            const oneMovie = await response.json();
-            let movieData = [];
-            movieData.push(oneMovie)
-            renderResults({total:1, movieData});
-            $(this).val(''); //resets the input element to an empty string
-        }
+    });
+    const actRes = await fetch(`/api/movies/allActors`);
+    const actData = await actRes.json();
+    $( "#actorSearch" ).autocomplete({
+        source: actData,
+        minLength: 3,
+    });
+    const directRes = await fetch(`/api/movies/allDirectors`);
+    const directData = await directRes.json();
+    $( "#directorSearch" ).autocomplete({
+        source: directData,
+        minLength: 3,
+    });
+    $( "#genreSearch" ).autocomplete({
+        source: genreList
     });
 }
 
@@ -42,17 +65,6 @@ function ignoreThe(){
     }
 }
 
-async function searchTerm(event){
-    event.preventDefault();
-    range = [1, 10];
-    pageNum = 1;
-    const term = $('#movieSearch').val().replaceAll(' ', '_');
-    const response = await fetch(`/api/movies/${term}/${range.join('-')}`);
-    lastSearch = `/api/movies/${term}/`;
-    const results = await response.json();
-    renderResults(results);
-}
-
 async function renderResults({total, movieData}){
     if(total % 10 === 0){
         lastPage = total / 10;
@@ -62,11 +74,12 @@ async function renderResults({total, movieData}){
     $('#result-count').text(total);
     let displayRange = [...range];
     if(displayRange[1] > total){
+        displayRange[0] = total;
         displayRange[1] = total;
     }
     $('#result-range').text(displayRange.join('-'));
     $('#list-container').empty();
-    if(movieData){
+    if(total !== 0){
         for(const movie of movieData){
             let imgCol = $('<div>');
             imgCol.attr('class', 'col-3');
@@ -136,8 +149,8 @@ async function renderResults({total, movieData}){
             infoCol.append(infoContainer);
             $('#list-container').append(infoCol);
         }
-    }else {
-        let errContainer = $('<div>');
+    } else {
+        let errContainer = $('<p>');
         errContainer.css('margin-bottom', '40vh');
         errContainer.text('Nothing Found!');
         $('#list-container').append(errContainer);
@@ -176,10 +189,113 @@ async function prevPage(){
     }
 }
 
+function decideSearch(event){
+    event.preventDefault();
+    let title = $('#movieSearch').val();
+    let actor = $('#actorSearch').val();
+    let director = $('#directorSearch').val();
+    let genre = $('#genreSearch').val();
+
+    range = [1, 10];
+    pageNum = 1;
+
+    $('#movieSearch').val('');
+    $('#actorSearch').val('');
+    $('#directorSearch').val('');
+    $('#genreSearch').val('');
+
+    if(title && !actor && !director && !genre){
+        //title
+        singleSearch('1', title);
+    } else if(!title && actor && !director && !genre){
+        //actor
+        singleSearch('2', actor);
+    } else if(!title && !actor && director && !genre){
+        //director
+        singleSearch('3', director);
+    } else if(!title && !actor && !director && genre){
+        //genre
+        singleSearch('4', genre);
+    } else if(title && actor && !director && !genre){
+        //title, actor
+        doubleSearch('1', title, actor);
+    } else if(title && !actor && director && !genre){
+        //title, director
+        doubleSearch('2', title, director);
+    } else if(title && !actor && !director && genre){
+        //title, genre
+        doubleSearch('3', title, genre);
+    } else if(!title && actor && director && !genre){
+        //actor, director
+        doubleSearch('4', actor, director);
+    } else if(!title && actor && !director && genre){
+        //actor, genre
+        doubleSearch('5', actor, genre);
+    } else if(!title && !actor && director && genre){
+        //director, genre
+        doubleSearch('6', director, genre);
+    } else if(title && actor && director && !genre){
+        //case 1: title, actor, director
+        tripleSearch('1', title, actor, director);
+    } else if(title && actor && !director && genre){
+        //case 2: title, actor, genre
+        tripleSearch('2', title, actor, genre);
+    } else if(title && !actor && director && genre){
+        //case 3: title, director, genre
+        tripleSearch('3', title, director, genre);
+    } else if(!title && actor && director && genre){
+        //case 4: actor, director, genre
+        tripleSearch('4', actor, director, genre);
+    } else if(title && actor && director && genre){
+        //actor, actor, director, genre
+        fullSearch(title, actor, director, genre)
+    } else {
+        console.log("something went wrong! (unless everything was empty!)");
+    }
+}
+
+async function singleSearch(caseStr, param){
+    const term = param.replaceAll(' ', '_');
+    const response = await fetch(`/api/movies/singleSearch/${term}/${caseStr}/${range.join('-')}`);
+    lastSearch = `/api/movies/singleSearch/${term}/${caseStr}/`;
+    const results = await response.json();
+    renderResults(results);
+}
+
+async function doubleSearch(caseStr, paramOne, paramTwo){
+    const term1 = paramOne.replaceAll(' ', '_');
+    const term2 = paramTwo.replaceAll(' ', '_');
+    const response = await fetch(`/api/movies/doubleSearch/${term1}/${term2}/${caseStr}/${range.join('-')}`);
+    lastSearch = `/api/movies/doubleSearch/${term1}/${term2}/${caseStr}/`;
+    const results = await response.json();
+    renderResults(results);
+}
+
+async function tripleSearch(caseStr, paramOne, paramTwo, paramThree){
+    const term1 = paramOne.replaceAll(' ', '_');
+    const term2 = paramTwo.replaceAll(' ', '_');
+    const term3 = paramThree.replaceAll(' ', '_');
+    const response = await fetch(`/api/movies/tripleSearch/${term1}/${term2}/${term3}/${caseStr}/${range.join('-')}`);
+    lastSearch = `/api/movies/tripleSearch/${term1}/${term2}/${term3}/${caseStr}/`;
+    const results = await response.json();
+    renderResults(results);
+}
+
+async function fullSearch(title, actor, director, genre){
+    const titleParam = title.replaceAll(' ', '_');
+    const actorParam = actor.replaceAll(' ', '_');
+    const directorParam = director.replaceAll(' ', '_');
+    const genreParam = genre.replaceAll(' ', '_');
+    const response = await fetch(`/api/movies/fullSearch/${titleParam}/${actorParam}/${directorParam}/${genreParam}/${range.join('-')}`);
+    lastSearch = `/api/movies/fullSearch/${titleParam}/${actorParam}/${directorParam}/${genreParam}/`;
+    const results = await response.json();
+    renderResults(results);
+}
+
 loadPage();
 loadAutoComplete();
 $('#movieSearch').keyup(ignoreThe);
-$('#submitSearch').click(searchTerm);
+$('#submitSearch').click(decideSearch);
 $('#next-page-top').click(nextPage)
 $('#next-page-bottom').click(nextPage)
 $('#previous-page-top').click(prevPage)
