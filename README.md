@@ -48,13 +48,20 @@
 This project is licensed under the MIT license.
 
 ## :confetti_ball: Features
+- Use Node.js and Express.js to create a RESTful API.
+- Use Handlebars.js as the template engine.
+- Use MySQL and the Sequelize ORM for the database.
+- Have GET, POST, PUT, DELETE routes for retrieving and adding new data, and editing and deleting existing data.
+- Have a folder structure that meets the MVC paradigm.
+- Include authentication (express-session and cookies): User Signup/Login/Logout with validations.
+- Protect sensitive information with environment variables.
+- Deployed using Heroku (with data).
 - Movie Dataset
 - CSS Framework
 - Responsive Webpage
 - Interactive Webpage
 - Accessible Webpage
-- User Signup/Login/Logout with validations
-- Search Engine
+- Custom made Search Engine for an enhanced User Experience
 - Logo
 
 ## :sparkles: Assets
@@ -66,6 +73,7 @@ This project is licensed under the MIT license.
 - **Wireframe:** [Figma](https://www.figma.com/file/IxDNxumuYMueUuQJjAppuS/Untitled?node-id=0-1)
 - **Color Palette:** [Coolors](https://coolors.co/d5cfe1-e1dee9-d4bebe-04151f-5d5f71)
 - **Applications:** VS Code, Heroku.
+
 
 ### Resources
 - **Logo:** [Free Logo Design](https://www.freelogodesign.org/) / [Remove bg](https://www.remove.bg/upload)
