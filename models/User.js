@@ -1,4 +1,4 @@
-// Require Sequelize, Sequelize Object, and Bcrypt for hasing password
+// Require Sequelize, Sequelize Object, and Bcrypt for hashing password
 const { Sequelize, Model, DataTypes } = require('sequelize');
 const bcrypt = require('bcrypt');
 const sequelize = require('../config/connection');
