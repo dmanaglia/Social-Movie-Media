@@ -21,7 +21,7 @@
 
 * [Features](#confetti_ball-features)
 
-* [Technologies Used](#sparkles-technologies-used)
+* [Assets](#sparkles-assets)
 
 * [Challenges](#tornado-challenges)
 
@@ -48,13 +48,20 @@
 This project is licensed under the MIT license.
 
 ## :confetti_ball: Features
+- Use Node.js and Express.js to create a RESTful API.
+- Use Handlebars.js as the template engine.
+- Use MySQL and the Sequelize ORM for the database.
+- Have GET, POST, PUT, DELETE routes for retrieving and adding new data, and editing and deleting existing data.
+- Have a folder structure that meets the MVC paradigm.
+- Include authentication (express-session and cookies): User Signup/Login/Logout with validations.
+- Protect sensitive information with environment variables.
+- Deployed using Heroku (with data).
 - Movie Dataset
 - CSS Framework
 - Responsive Webpage
 - Interactive Webpage
 - Accessible Webpage
-- User Signup/Login/Logout with validations
-- Search Engine
+- Custom made Search Engine for an enhanced User Experience
 - Logo
 
 ## :sparkles: Assets
@@ -67,9 +74,20 @@ This project is licensed under the MIT license.
 - **Color Palette:** [Coolors](https://coolors.co/d5cfe1-e1dee9-d4bebe-04151f-5d5f71)
 - **Applications:** VS Code, Heroku.
 
+### Packages
+- [Express](https://www.npmjs.com/package/express) Package
+- [Express Handlebars](https://www.npmjs.com/package/express-handlebars) Package
+- [express-session](https://www.npmjs.com/package/express-session) Package
+- [connect-session-sequelize](https://www.npmjs.com/package/connect-session-sequelize) Package
+- [MySQL2](https://www.npmjs.com/package/mysql2) Package
+- [Sequelize](https://www.npmjs.com/package/sequelize) Package
+- [dotenv](https://www.npmjs.com/package/dotenv) Package
+- [bcrypt](https://www.npmjs.com/package/bcrypt) Package
+
+
 ### Resources
 - **Logo:** [Free Logo Design](https://www.freelogodesign.org/) / [Remove bg](https://www.remove.bg/upload)
-- **Movie Posters:** [Amazon](https://www.amazon.com/)
+- **Movie Posters:** [IMDb](https://www.imdb.com/)
 
 ## :tornado: Challenges
 - Challenge 1
