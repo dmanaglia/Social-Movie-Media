@@ -1,4 +1,4 @@
-<header class="mt-5 text-center">
+<header class="mt-5 text-center"> <!-- Navbar at top of page fpr functionality -->
     <img src="/assets/logo.png" alt="Logo" width="200" height="200">
     <nav class="d-flex justify-content-around w-25 mx-auto">
         <a href="/home">Home</a>
@@ -15,7 +15,7 @@
     <div class="container text-center">
         <div class="row gx-5 gy-5">
             <div class="col-3">
-                <div class="card">
+                <div class="card"> <!-- Portrays the poster of the movie on the top left pf the page -->
                     {{#if movie.poster_link}}
                     <img src="{{movie.poster_link}}" class="card-img-top" alt="{{movie.Title}}">
                     {{else}}
@@ -28,7 +28,7 @@
                     <div class="card-title">
                         <h1>{{movie.Title}}</h1>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body"> <!-- Takes the Movie model info and portrays it on the page for a more complete description-->
                         <p>
                         Rating: {{movie.Rating}} <br>
                         Year: {{movie.Year}} <br>
@@ -44,21 +44,21 @@
                         Country of origin: {{movie.Country_of_origin}}
                         </p>
                     </div>
-                    <div class="card-footer d-flex justify-content-between">
+                    <div class="card-footer d-flex justify-content-between"> <!-- Have the ability to go back to previous page -->
                         <button class="btn btn-primary" onclick="history.back()">Go Back</button>
                         <a id="edit-or-add-review" class="btn btn-primary"></a>
                     </div>
                 </div>
             </div>
             <div>
-                <div>
+                <div> <!-- Different display at the top of reviews section, depending on if there are revies -->
                     {{#if movie.reviews}}
                     <h1>Reviews</h1>
                     {{else}}
                     <h1>No Reviews</h1>
                     {{/if}}
                 </div>
-                {{#each movie.reviews as |review|}}
+                {{#each movie.reviews as |review|}} <!-- For each review, display title at the top, review in the middle, and rating/username at bottom-->
                     <div style="margin-bottom: 1rem;">
                         <span>
                             <div class="card">

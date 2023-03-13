@@ -1,4 +1,4 @@
-<header class="mt-5 text-center">
+<header class="mt-5 text-center"> <!-- Navbar at top of page for functionality --> 
     <img src="/assets/logo.png" alt="Logo" width="200" height="200">
     <nav class="d-flex justify-content-around w-25 mx-auto">
         <a href="/home">Home</a>
@@ -11,22 +11,22 @@
     </nav>
 </header>
 
-<div class="w-75 mt-5 p-3 mx-auto">
+<div class="w-75 mt-5 p-3 mx-auto"> <!-- Form for editing a review for a movie --> 
     <form id="editReview-form">
         <div class="text-center">
             <h2>{{editReview.movie.Title}}</h2>
         </div>
         <h4>Edit Review:</h4>
-        <div class="form-floating mb-3">
+        <div class="form-floating mb-3"> <!-- Taking the title from the previous review as a starting value -->
             <input type="text" class="form-control" id="review-title" value="{{editReview.title}}">
             <label for="review-title">Title</label>
         </div>
-        <div class="form-floating">
+        <div class="form-floating"> <!-- Taking the review/body from the previous review as a starting value -->
             <input type="text" class="form-control" id="review-body" value="{{editReview.body}}">
             <label for="review-body">Review</label>
         </div>
 
-        <div class="text-center mt-2">
+        <div class="text-center mt-2"> <!-- Rating system for 1-5 stars for review -->
             Rating:
             <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" name="rateOptions" id="rate1" value=1>
@@ -50,10 +50,10 @@
             </div>
         </div>
 
-        <div class="form-footer mt-3 d-flex justify-content-between">
+        <div class="form-footer mt-3 d-flex justify-content-between"> <!-- Go back button for functionalityn-->
             <button class="btn btn-primary" id="go-back-btn">Go Back</button>
             <btn class="btn btn-primary" id="edit-review" data-id="{{editReview.movieId}}">Submit</btn>
-            <btn class="btn btn-danger"  id="delete-review" data-id="{{editReview.id}}">Delete</btn>
+            <btn class="btn btn-danger"  id="delete-review" data-id="{{editReview.id}}">Delete</btn> <!-- Delete button as a method of "editing" -->
         </div>
     </form>
 </div>
