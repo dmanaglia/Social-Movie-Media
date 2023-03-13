@@ -75,13 +75,13 @@ router.get('/movie/:id', withAuth, async (req, res) => { // Each movie has its o
   }
 });
 
-router.get('/review/:id', withAuth, async (req, res) => { // Each review has its own id, and is associated with a with a specificn movie id
+router.get('/review/:id', withAuth, async (req, res) => { // Each review has its own id, and is associated with a with a specific movie id
   const movieData = await Movie.findByPk(req.params.id);
   const movie = movieData.get({ plain: true })
   res.render('addReview', {movie});
 });
 
-router.get('/editReview/:id', withAuth, async (req, res) => { // Find a review by its id and relationship to a specific movie (for esiting purposes)
+router.get('/editReview/:id', withAuth, async (req, res) => { // Find a review by its id and relationship to a specific movie (for editing purposes)
   try{
       const editData = await Review.findByPk(req.params.id, {
         include: [{
