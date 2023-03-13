@@ -58,7 +58,7 @@ router.get('/logout', withAuth, (req, res) => {
   res.render('welcome')
 });
 
-router.get('/movie/:id', withAuth, async (req, res) => {
+router.get('/movie/:id', withAuth, async (req, res) => { // Each movie has its own id, and when clicking on the movie, include the reviews for that movie/id
   try {
     const movie = await Movie.findByPk(req.params.id, {
       include: [{
@@ -75,13 +75,13 @@ router.get('/movie/:id', withAuth, async (req, res) => {
   }
 });
 
-router.get('/review/:id', withAuth, async (req, res) => {
+router.get('/review/:id', withAuth, async (req, res) => { // Each review has its own id, and is associated with a with a specificn movie id
   const movieData = await Movie.findByPk(req.params.id);
   const movie = movieData.get({ plain: true })
   res.render('addReview', {movie});
 });
 
-router.get('/editReview/:id', withAuth, async (req, res) => {
+router.get('/editReview/:id', withAuth, async (req, res) => { // Find a review by its id and relationship to a specific movie (for esiting purposes)
   try{
       const editData = await Review.findByPk(req.params.id, {
         include: [{
