@@ -1,3 +1,4 @@
+//checks url to know if the page is rendered as login or sign up
 const loginPath = window.location.toString().split('/');
 const login = loginPath[loginPath.length - 1] * 1;
 let passwordCheck1 = false;
@@ -7,6 +8,7 @@ async function loginFormHandler(event){
     event.preventDefault();
     const username = document.getElementById('inputUsername').value;
     const password = document.getElementById('inputPassword1').value;
+    //if user is logging in
     if(login){
         const response = await fetch(`/api/users/login`, {
             method: 'POST',
@@ -33,7 +35,7 @@ async function loginFormHandler(event){
             }
         }
     }
-
+    //if user is signing up
     if(!login){
         if(passwordCheck1 && passwordCheck2){
             const response = await fetch(`/api/users/`, {
@@ -55,7 +57,7 @@ async function loginFormHandler(event){
         }
     }
 }
-
+//updates message to display if first password fullfils requirement of greater than 4
 function password1Help(){
     const password = document.getElementById('inputPassword1').value;
     if(password.length < 4){
@@ -66,7 +68,7 @@ function password1Help(){
         passwordCheck1 = true;
     }
 }
-
+//updates message to display if second password matches first password
 function password2Help(){
     const password = document.getElementById('inputPassword1').value;
     const passwordConfirm = document.getElementById('inputPassword2').value;
@@ -82,6 +84,7 @@ function password2Help(){
 document.querySelector('#login-form').addEventListener('submit', loginFormHandler);
 
 if(!login){
+    //adds event listeners only when user is signing up
     document.querySelector('#inputPassword1').addEventListener('keyup', password1Help);
     document.querySelector('#inputPassword2').addEventListener('keyup', password2Help);
 }

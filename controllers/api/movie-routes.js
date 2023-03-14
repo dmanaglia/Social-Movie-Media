@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { Op } = require("sequelize");
 const { Movie } = require('../../models');
 const withAuth = require('../../utils/auth');
-
+//returns list of all titles in the dataset (no repeats)
 router.get('/allTitles', withAuth, async (req, res) => {
     const allTitles = await Movie.findAll({
         attributes: ['Title']
@@ -14,7 +14,7 @@ router.get('/allTitles', withAuth, async (req, res) => {
     uniqueTitles = [...new Set(titles)];
     res.status(200).json(uniqueTitles);
 });
-
+//returns list of all Actors in the dataset (no repeats)
 router.get('/allActors', withAuth, async (req, res) => {
     const actorData = await Movie.findAll({
         attributes: ['Stars']
@@ -30,7 +30,7 @@ router.get('/allActors', withAuth, async (req, res) => {
     uniqueActors = [...new Set(allActors)];
     res.status(200).json(uniqueActors);
 });
-
+//returns a list of all directors in the dataset (no repeats)
 router.get('/allDirectors', withAuth, async (req, res) => {
     const directorData = await Movie.findAll({
         attributes: ['Directors']
@@ -50,7 +50,7 @@ router.get('/allDirectors', withAuth, async (req, res) => {
     uniqueDirectors = [...new Set(allDirectors)];
     res.status(200).json(uniqueDirectors);
 });
-
+//gets all movies between a specified range 
 router.get('/getAll/:range', withAuth, async (req, res) => {
    try { 
         let range = req.params.range.split('-');
@@ -59,12 +59,13 @@ router.get('/getAll/:range', withAuth, async (req, res) => {
                 [Op.and]: [{id: {[Op.gte]: range[0]}}, {id: {[Op.lte]: range[1]}}]
             }
         })
+        //total is always 2000 since there are 2000 movies in the dataset
         res.status(200).json({total: 2000, movieData});
     } catch(err) {
         res.status(500).json(err);
     }
 });
-
+//takes in serch term and case to note what the term represents (1 title, 2 actor etc)
 router.get('/singleSearch/:a/:case/:range', withAuth, async (req, res) => {
     const a = req.params.a.replaceAll('_', ' ');
     let fullData;
@@ -110,6 +111,7 @@ router.get('/singleSearch/:a/:case/:range', withAuth, async (req, res) => {
             break;
     }
     let total = fullData.length;
+    //extracts info from all movies found to only those found within specified range
     let range = req.params.range.split('-');
     let movieData = [];
     let i = range[0] - 1;
@@ -117,9 +119,10 @@ router.get('/singleSearch/:a/:case/:range', withAuth, async (req, res) => {
         movieData.push(fullData[i]);
         i++;
     }
+    //returns the total number found and the data on the movies within the specified range
     res.status(200).json({total, movieData});
 });
-
+//takes in 2 search terms with a case to note what each term represents (6 possibilities)
 router.get('/doubleSearch/:a/:b/:case/:range', withAuth, async (req, res) => {
     const a = req.params.a.replaceAll('_', ' ');
     const b = req.params.b.replaceAll('_', ' ');
@@ -222,7 +225,7 @@ router.get('/doubleSearch/:a/:b/:case/:range', withAuth, async (req, res) => {
     }
     res.status(200).json({total, movieData});
 });
-
+//takes 3 search terms and a case to note what each term represents (4 possibilies)
 router.get('/tripleSearch/:a/:b/:c/:case/:range', withAuth, async (req, res) => {
     const a = req.params.a.replaceAll('_', ' ');
     const b = req.params.b.replaceAll('_', ' ');
@@ -311,7 +314,7 @@ router.get('/tripleSearch/:a/:b/:c/:case/:range', withAuth, async (req, res) => 
     }
     res.status(200).json({total, movieData});
 });
-
+//takes in 4 search terms
 router.get('/fullSearch/:title/:actor/:director/:genre/:range', withAuth, async (req, res) => {
     const title = req.params.title.replaceAll('_', ' ');
     const actor = req.params.actor.replaceAll('_', ' ');

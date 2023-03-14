@@ -7,7 +7,7 @@ router.get('/login/:login', (req, res) => {
   let login = req.params.login * 1;
   res.render('login', {login})
 });
-
+//gets all user reviews and returns them in order of most newest to oldest
 router.get('/home', withAuth, async (req, res) => {
   const reviewData = await Review.findAll({
     order: [['updated_at', 'DESC']],
@@ -21,7 +21,7 @@ router.get('/home', withAuth, async (req, res) => {
   const reviews = reviewData.map((review) => review.get({ plain: true }));
   res.render('home', {reviews});
 });
-
+//gets all movies reviewed by the user and returns them
 router.get('/dashboard', withAuth, async (req, res) => {
   let user = req.session;
   try {
@@ -45,12 +45,12 @@ router.get('/dashboard', withAuth, async (req, res) => {
     res.status(500).json(err);
   }
 });
-
+//renders search page
 router.get('/search', withAuth, (req, res) => {
   let userId = req.session.userId;
   res.render('search', {userId})
 });
-
+//resets all session variables and navigates to the welcome page
 router.get('/logout', withAuth, (req, res) => {
   req.session.logged_in = false;
   req.session.userId = null;
@@ -98,7 +98,8 @@ router.get('/editReview/:id', withAuth, async (req, res) => { // Find a review b
         res.status(500).json(err);
     };     
 });
-
+//if route is unknown and user is logged in it will render the home page
+//if route is unknown and user is not logged in it will render the welcome page
 router.get('*', async (req, res) => {
     try {
       if(req.session.logged_in){
