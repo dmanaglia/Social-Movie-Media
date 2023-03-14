@@ -103,7 +103,17 @@ router.get('/editReview/:id', withAuth, async (req, res) => { // Find a review b
 router.get('*', async (req, res) => {
     try {
       if(req.session.logged_in){
-        res.render('home');
+        const reviewData = await Review.findAll({
+          order: [['updated_at', 'DESC']],
+          include: [{
+            model: Movie
+          }, 
+          {
+            model: User
+          }]
+        })
+        const reviews = reviewData.map((review) => review.get({ plain: true }));
+        res.render('home', {reviews});
       } else {
         res.render('welcome');
       }
